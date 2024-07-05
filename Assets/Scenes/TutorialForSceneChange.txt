@@ -1,0 +1,9 @@
+For Scene Change:
+
+We have 2 ways to scene change, with a button or with a code. Here I'm going to teach you de 2 ways. Because I have finished the code and do it again it's not a great option.
+
+With a Button:
+You create the button, then, create a gameobjcet and name it: "Youre scene Screen Controller". Assign the "Scene Changer" Script in the gameobject. In the script, write the name of youre scene in the variable "Scene" (Make sure that the name is the same). Then, in the OnClick() fuction in the button, Put the gameobject. And then select: SceneChanger-ChangeScene(). And with that, you can change a scene with a button.
+
+With Code:
+This one might be difficult. You have youre script. In the script you assign a variable like this: "SceneChanger sceneChanger;" (You can copy paste the line), where you want to change the Scene. You code this line: "sceneChanger.ChangeSceneWithCode("Yourescene");" (Again, you can copy paste the line, remember to change: YoureScene whit the scene you want to change). And for code this is all. In unity inspector, you need to create a empty gameobject and name it "SceneChangerController". Then, you assign the "Scene Changer" script in it. If you follow this tutorial, where you have youre code, now you have a variable named: "Scene Changer". There, you assign the gameobject named: "SceneChangerController". And with that, you can change scenes with code.
