@@ -9,15 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Development/GUI/Leo/MainMenu.unity
+    path: Assets/_Dev/Leo/MainMenu.unity
     guid: 3da614afaa363b545b2b32b46f3e360c
   - enabled: 1
-    path: Assets/Scenes/Development/GUI/Leo/SettingsMenu.unity
+    path: Assets/_Dev/Leo/SettingsMenu.unity
     guid: 1d42726753eb20c4593f94db83bfbda4
   - enabled: 1
-    path: Assets/Scenes/Development/GUI/Leo/GarmentsMenu.unity
+    path: Assets/_Dev/Leo/GarmentsMenu.unity
     guid: 700c1f59338aaf540b8c654a7a0089b7
   - enabled: 1
-    path: Assets/Scenes/Development/GUI/Leo/LevelsMenu.unity
+    path: Assets/_Dev/Leo/LevelsMenu.unity
     guid: 25d1fca805aae304b872a6511320453b
   m_configObjects: {}
