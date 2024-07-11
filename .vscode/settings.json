@@ -51,5 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "uach-cdv-rythm-game-unity.sln"
+    "dotnet.defaultSolution": "uach-cdv-rythm-game-unity.sln",
+    "dotnet.preferCSharpExtension": true
 }
