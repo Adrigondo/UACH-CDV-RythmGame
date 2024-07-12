@@ -2050,7 +2050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb8883435c69784ea9f100ead7e82bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Scene: LevelsMenu
+  Scene: LevelsMenuGood
 --- !u!1 &1967280632
 GameObject:
   m_ObjectHideFlags: 0

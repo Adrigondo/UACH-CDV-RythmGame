@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   levelName: TheVoid
+  levelNumber: 1
+  musicLevel: {fileID: 0}
   maximumscore: 10000
   levelScene: Level1

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.UI;
 [CreateAssetMenu(fileName = "LevelScriptableobject", menuName = "ScriptableObjects/Level")]
 
 public class LevelsScriptableObject : ScriptableObject
@@ -12,8 +13,8 @@ public class LevelsScriptableObject : ScriptableObject
     public string LevelName {get => levelName; private set => levelName = value;}
 
     [SerializeField]
-    string levelDescription;
-    public string LevelDescription {get => levelDescription; private set => levelDescription = value;}
+    int levelNumber;
+    public int LevelNumber {get => levelNumber; private set => levelNumber = value;}
 
     [SerializeField]
     AudioClip musicLevel;
@@ -22,6 +23,10 @@ public class LevelsScriptableObject : ScriptableObject
     [SerializeField]
     float maximumscore;
     public float MaximumScore {get => maximumscore; private set => maximumscore = value;}
+
+    [SerializeField]
+    RawImage levelImage;
+    public RawImage LevelImage {get => levelImage; private set => levelImage = value;}
 
     [SerializeField]
     string levelScene;
