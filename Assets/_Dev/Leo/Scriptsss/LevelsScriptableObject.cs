@@ -10,10 +10,14 @@ public class LevelsScriptableObject : ScriptableObject
     [SerializeField]
     string levelName;
     public string LevelName {get => levelName; private set => levelName = value;}
-    
+
     [SerializeField]
-    Image levelImage;
-    public Image LevelImage {get => levelImage; private set => levelImage = value;}
+    string levelDescription;
+    public string LevelDescription {get => levelDescription; private set => levelDescription = value;}
+
+    [SerializeField]
+    AudioClip musicLevel;
+    public AudioClip MusicLevel {get => musicLevel; private set => musicLevel = value;}
 
     [SerializeField]
     float maximumscore;
