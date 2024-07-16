@@ -24,8 +24,8 @@ public class LevelsScriptableObject : ScriptableObject
     public float MaximumScore {get => maximumscore; private set => maximumscore = value;}
 
     [SerializeField]
-    RawImage levelImage;
-    public RawImage LevelImage {get => levelImage; private set => levelImage = value;}
+    List<Sprite> levelImages = new List<Sprite>(3);
+    public List<Sprite> LevelImages {get => levelImages; private set => levelImages = value;}
 
     [SerializeField]
     string levelScene;
