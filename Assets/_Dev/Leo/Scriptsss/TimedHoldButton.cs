@@ -9,10 +9,14 @@ public class TimedHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     protected GameObject SceneChanger;
 
     [SerializeField]
+    [Tooltip("Image to show for the button.")]
+    protected Image ImageFill;
+
+    [SerializeField]
     [Tooltip("The time the button must be hold pressed to complete the action.")]
     protected float SuccessTime;
 
-    protected float CurrentHoldTime = 0f;
+    protected float CurrentHeldTime = 0f;
     
     protected bool IsPressed = false;
 
@@ -20,13 +24,16 @@ public class TimedHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     void Start()
     {
         SceneChanger.SetActive(false);
+        ImageFill.GetComponent<Image>();
+        ImageFill.fillAmount = 0;
     }
     void Update()
     {
         if (IsPressed)
         {
-            CurrentHoldTime += Time.deltaTime;
-            if (CurrentHoldTime >= SuccessTime)
+            CurrentHeldTime += Time.deltaTime;
+            ImageFill.fillAmount = CurrentHeldTime/SuccessTime;
+            if (CurrentHeldTime >= SuccessTime)
             {
                 OnHoldComplete();
                 IsPressed = false; // Evita que se llame repetidamente
@@ -37,13 +44,14 @@ public class TimedHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public void OnPointerDown(PointerEventData eventData)
     {
         IsPressed = true;
-        CurrentHoldTime = 0f;
+        CurrentHeldTime = 0f;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         IsPressed = false;
-        CurrentHoldTime = 0f;
+        CurrentHeldTime = 0f;
+        ImageFill.fillAmount = 0;
     }
 
     private void OnHoldComplete()
