@@ -447,8 +447,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneChanger: {fileID: 653342570}
-  progressButtonImage: {fileID: 1846257051}
-  holdTime: 2
+  ImageFill: {fileID: 0}
+  SuccessTime: 2
 --- !u!1 &457028035
 GameObject:
   m_ObjectHideFlags: 0
