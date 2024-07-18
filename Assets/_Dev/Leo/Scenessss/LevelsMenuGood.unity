@@ -447,7 +447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneChanger: {fileID: 653342570}
-  ImageFill: {fileID: 0}
+  ImageFill: {fileID: 1846257051}
   SuccessTime: 2
 --- !u!1 &457028035
 GameObject:
