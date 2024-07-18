@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ImageChenger : MonoBehaviour
+public class ChangeScriptableImage : MonoBehaviour
 {
-    public LevelsScriptableObject levelsScriptableObject;
+    [SerializeField]
+    [Tooltip("The ScriptableObject for your level.")]
+    protected LevelsScriptableObject levelsScriptableObject;
     Image image;
     
     void Start()
