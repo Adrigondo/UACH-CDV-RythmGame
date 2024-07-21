@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb8883435c69784ea9f100ead7e82bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Scene: GarmentsMenu
+  Scene: InventoryMenu
 --- !u!1 &162842086
 GameObject:
   m_ObjectHideFlags: 0
