@@ -18,7 +18,7 @@ public class TimedHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     protected float CurrentHeldTime = 0f;
     
-    protected bool IsPressed = false;
+    protected bool IsOnClick = false;
 
 
     void Start()
@@ -29,27 +29,27 @@ public class TimedHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     }
     void Update()
     {
-        if (IsPressed)
+        if (IsOnClick)
         {
             CurrentHeldTime += Time.deltaTime;
             ImageFill.fillAmount = CurrentHeldTime/SuccessTime;
             if (CurrentHeldTime >= SuccessTime)
             {
                 OnHoldComplete();
-                IsPressed = false; // Evita que se llame repetidamente
+                IsOnClick = false; // Evita que se llame repetidamente
             }
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        IsPressed = true;
+        IsOnClick = true;
         CurrentHeldTime = 0f;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        IsPressed = false;
+        IsOnClick = false;
         CurrentHeldTime = 0f;
         ImageFill.fillAmount = 0;
     }
