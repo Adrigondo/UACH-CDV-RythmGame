@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34fe59f6-3688-47ff-8c64-b079df5b9fa5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/_Dev/Leo/Scenessss/LevelsMenuGood.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Dev/Leo/Scenessss/LevelsMenuGood.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Dev/Leo/Scenessss/SettingsMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Dev/Leo/Scenessss/SettingsMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Dev/Leo/Scriptsss/TimedHoldButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Dev/Leo/Scriptsss/TimedHoldButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_Dev/Leo/Scriptsss/GameManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_Dev/Leo/Scriptsss/GameManager.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Dev/Leo/Scenessss/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Dev/Leo/Scenessss/Level1.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,16 +21,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2jZReE8V7PwcCw0iWII2APRW30T" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
@@ -55,5 +59,8 @@
       <updated>1721592706517</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
