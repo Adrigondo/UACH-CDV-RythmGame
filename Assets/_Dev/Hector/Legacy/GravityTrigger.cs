@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GravityTrigger : MonoBehaviour
 {
-    [SerializeField] private float gravityChangeDegree = 0;
+    [SerializeField] private float velocityChangeDegree = 0;
 
     public float GetGravityChangeDegree()
     {
-        return gravityChangeDegree;
+        return velocityChangeDegree;
     }
 }

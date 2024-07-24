@@ -16,7 +16,7 @@ public class NewPlayerBehavior : MonoBehaviour
         [SerializeField] protected bool startLevelWithGravityFlipped = false;
         [SerializeField] protected bool startLevelMovingLeft = false;
         [SerializeField] protected float raycastLength = 15f;
-        [SerializeField] protected float gravityScale = 9.81f;
+        [SerializeField] protected float gravityScale = 1f;
         [SerializeField] protected float movementSpeed = 5f;
         [SerializeField] protected float movementAngleInDegrees = 0;
         protected float movementAngleInRadians = 0;
@@ -25,11 +25,13 @@ public class NewPlayerBehavior : MonoBehaviour
         protected bool shouldMoveLeft = false;
         protected bool isGrounded;
         protected bool canFloat;
-        [SerializeField]  protected float buttonHoldThreshold = 0.15f;
+        [SerializeField] protected float buttonHoldThreshold = 0.15f;
         protected float buttonHeldDownTime;
         protected bool isButtonHeldDown;
         protected Collider2D playerCollider;
         protected Rigidbody2D rigidBody2D;
+        [SerializeField] protected StartPosition startPositionScript;
+        [SerializeField] protected CameraBehavior cameraBehavior;
     #endregion
 
 
@@ -38,6 +40,7 @@ public class NewPlayerBehavior : MonoBehaviour
         {
             playerCollider = GetComponent<Collider2D>();
             rigidBody2D = GetComponent<Rigidbody2D>();
+
             if (playerCollider != null)
             {
                 playerHeight = playerCollider.bounds.size.y;
@@ -51,6 +54,8 @@ public class NewPlayerBehavior : MonoBehaviour
                 hasGravityBeenFlipped = true;
             if (startLevelMovingLeft)
                 shouldMoveLeft = true;
+
+            RespawnPlayer();
         }
 
         protected void Update()
@@ -67,6 +72,10 @@ public class NewPlayerBehavior : MonoBehaviour
 
         protected void OnTriggerEnter2D(Collider2D collision)
         {
+            if (collision.gameObject.tag == "FinishTrigger")
+            {
+                FinishLevel();
+            }
             /* if (collision.gameObject.tag == "GravityTrigger")
             {
                 GravityTrigger triggerScript = collision.gameObject.GetComponent<GravityTrigger>();
@@ -167,6 +176,12 @@ public class NewPlayerBehavior : MonoBehaviour
             }
         }
 
+        protected void RespawnPlayer()
+        {
+            transform.position = startPositionScript.GetStartPosition();
+        }
+
+
         protected void ChangePlayerGravityScale()
         {
             hasGravityBeenFlipped = !hasGravityBeenFlipped; //
@@ -213,8 +228,8 @@ public class NewPlayerBehavior : MonoBehaviour
         protected void CheckForWalkableTerrainAbove()
         {
             Vector2 raycastOrigin = transform.position;
-            raycastOrigin.y += (hasGravityBeenFlipped ? 1 : -1) * ((playerHeight / 2) + (playerHeight / 1000));
-            Vector2 upDirection = transform.TransformDirection((hasGravityBeenFlipped ? 1 : -1) * Vector2.up);
+            raycastOrigin.y += (playerHeight / 2) + (playerHeight / 1000);
+            Vector2 upDirection = transform.TransformDirection(Vector2.up);
             RaycastHit2D[] hits = Physics2D.RaycastAll(raycastOrigin, upDirection, raycastLength);
 
             foreach (RaycastHit2D hit in hits)
@@ -230,7 +245,7 @@ public class NewPlayerBehavior : MonoBehaviour
         protected void Teleport(RaycastHit2D hit)
         {
             Vector2 impactPoint = hit.point;
-            Vector2 newPosition = new Vector2(impactPoint.x, impactPoint.y - playerHeight / 2);
+            Vector2 newPosition = new Vector2(impactPoint.x, impactPoint.y + (hasGravityBeenFlipped ? 1 : -1) * playerHeight / 2);
             transform.position = newPosition;
             rigidBody2D.velocity = Vector2.zero;
             ChangePlayerGravityScale();
@@ -256,17 +271,26 @@ public class NewPlayerBehavior : MonoBehaviour
             Vector2 upDirection = transform.TransformDirection(Vector2.up);
             Gizmos.color = Color.red;
             Gizmos.DrawLine(raycastOrigin, raycastOrigin + upDirection * raycastLength);
-
-            Vector2 raycastOrigin2 = transform.position;
-            float raycastLength2 = playerHeight;
-            Vector2 downDirection = transform.TransformDirection(Vector2.down);
-            Gizmos.color = Color.blue;
-            Gizmos.DrawLine(raycastOrigin2, raycastOrigin2 + downDirection * raycastLength2);
         }
 
         protected void Death()
         {
-            Debug.LogError("Death");
+            Debug.LogAssertion("Death");
+            RespawnPlayer();
+
+            if (cameraBehavior != null)
+            {
+                cameraBehavior.RestartCamera();
+            }
+            else
+            {
+                Debug.LogError("No Camera Behavior script found");
+            }
+        }
+
+        protected void FinishLevel()
+        {
+            Debug.LogWarning("FELICIDADES TERMINASTE EL NIVEL");
         }
     #endregion
 }

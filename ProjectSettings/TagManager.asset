@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Walkable
   - GravityTrigger
+  - Hazard
+  - SpeedTrigger
+  - FinishTrigger
   layers:
   - Default
   - TransparentFX
