@@ -32,6 +32,7 @@ public class NewPlayerBehavior : MonoBehaviour
         protected Rigidbody2D rigidBody2D;
         [SerializeField] protected StartPosition startPositionScript;
         [SerializeField] protected CameraBehavior cameraBehavior;
+        [SerializeField] protected AudioSource audioSource;
     #endregion
 
 
@@ -277,6 +278,12 @@ public class NewPlayerBehavior : MonoBehaviour
         {
             Debug.LogAssertion("Death");
             RespawnPlayer();
+        
+            if (hasGravityBeenFlipped)
+            {
+                ChangePlayerGravityScale();
+            }
+            
 
             if (cameraBehavior != null)
             {
@@ -285,6 +292,19 @@ public class NewPlayerBehavior : MonoBehaviour
             else
             {
                 Debug.LogError("No Camera Behavior script found");
+            }
+
+            if (audioSource != null)
+            {
+                if (audioSource.isPlaying)
+                {
+                    audioSource.Stop();
+                }
+                audioSource.Play();
+            }
+            else
+            {
+                Debug.LogError("No Audio Source script found");
             }
         }
 
