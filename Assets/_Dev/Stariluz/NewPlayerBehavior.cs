@@ -10,52 +10,73 @@ using UnityEngine.InputSystem.Interactions;
 
 namespace Stariluz
 {
-    public class NewPlayerBehavior : MonoBehaviour, InputPlayer.IGameplayActions
+    public class NewPlayerBehavior : MonoBehaviour
     {
-        #region "Properties"
+        #region "Fields"
         [SerializeField] protected bool startLevelWithGravityFlipped = false;
         [SerializeField] protected bool startLevelMovingLeft = false;
         [SerializeField] protected float raycastLength = 15f;
-        [SerializeField] protected float gravityScale = 9.81f;
+        [SerializeField] protected float gravityScale = 5f;
         [SerializeField] protected float movementSpeed = 5f;
         [SerializeField] protected float movementAngleInDegrees = 0;
         protected float movementAngleInRadians = 0;
         protected float playerHeight;
-        protected bool hasGravityBeenFlipped = false;
         protected bool shouldMoveLeft = false;
-        protected bool isGrounded;
         protected bool canFloat;
         [SerializeField] protected float buttonHoldThreshold = 0.15f;
         protected float buttonHeldDownTime;
         protected bool isButtonHeldDown;
         protected Collider2D playerCollider;
-        protected Rigidbody2D rigidBody2D;
         InputPlayer controls;
+        private bool _isGravityInverted = false;
+        private bool _isGrounded;
+        private Rigidbody2D _rigidBody2D;
         #endregion
 
-
-        #region "LifeCycle functions"
-
-        public void OnEnable()
+        #region "Properties"
+        public bool IsGrounded
         {
-            if (controls == null)
-            {
-                controls = new InputPlayer();
-                // Tell the "gameplay" action map that we want to get told about
-                // when actions get triggered.
-                controls.Gameplay.SetCallbacks(this);
-            }
-            controls.Gameplay.Enable();
+            get { return _isGrounded; }
         }
-
-        public void OnDisable()
+        public Rigidbody2D RigidBody2D
         {
-            controls.Gameplay.Disable();
+            get { return _rigidBody2D; }
+            // set
+            // {
+            //     if (value != null)
+            //     {
+            //         _rigidBody2D = value;
+            //     }
+            // }
         }
+        public bool IsGravityInverted
+        {
+            get { return _isGravityInverted; }
+        }
+        #endregion
+
+        #region "LifeCycle methods"
+
+        // public void OnEnable()
+        // {
+        //     if (controls == null)
+        //     {
+        //         controls = new InputPlayer();
+        //         // Tell the "gameplay" action map that we want to get told about
+        //         // when actions get triggered.
+        //         controls.Gameplay.SetCallbacks(this);
+        //     }
+        //     controls.Gameplay.Enable();
+        // }
+
+        // public void OnDisable()
+        // {
+        //     controls.Gameplay.Disable();
+        // }
         protected void Start()
         {
             playerCollider = GetComponent<Collider2D>();
-            rigidBody2D = GetComponent<Rigidbody2D>();
+            _rigidBody2D = GetComponent<Rigidbody2D>();
             if (playerCollider != null)
             {
                 playerHeight = playerCollider.bounds.size.y;
@@ -66,7 +87,7 @@ namespace Stariluz
             }
 
             if (startLevelWithGravityFlipped)
-                hasGravityBeenFlipped = true;
+                _isGravityInverted = true;
             if (startLevelMovingLeft)
                 shouldMoveLeft = true;
         }
@@ -100,7 +121,7 @@ namespace Stariluz
         {
             if (collision.gameObject.tag == "Walkable")
             {
-                isGrounded = true;
+                _isGrounded = true;
             }
         }
 
@@ -108,7 +129,7 @@ namespace Stariluz
         {
             if (collision.gameObject.tag == "Walkable")
             {
-                isGrounded = false;
+                _isGrounded = false;
             }
         }
         #endregion
@@ -122,24 +143,6 @@ namespace Stariluz
             }
         }
 
-        public void OnFloat(InputAction.CallbackContext context)
-        {
-            if (context.started)
-            {
-                if (!isGrounded)
-                {
-                    Float();
-                }
-            }
-            if (context.performed)
-            {
-                // if(context.interaction is HoldInteraction){
-
-                //     Float();
-                // }
-                StopFloat();
-            }
-        }
         public void OnTeleport(InputAction.CallbackContext context)
         {
             if (context.performed)
@@ -147,42 +150,34 @@ namespace Stariluz
                 CheckTeleport();
             }
         }
-
+        public void ResetGravityScale()
+        {
+            if (!IsGravityInverted)
+                RigidBody2D.gravityScale = gravityScale; //CAMBIAR POR VARIABLE DE GRAVITYSCALE QUE SEA SERIALIZABLE O ALGO IDK
+            else
+                RigidBody2D.gravityScale = -gravityScale;
+        }
         #endregion
 
         #region "Protected methods"
         protected void ChangePlayerGravityScale()
         {
-            hasGravityBeenFlipped = !hasGravityBeenFlipped; //
-            rigidBody2D.gravityScale *= -1;
+            _isGravityInverted = !_isGravityInverted; //
+            _rigidBody2D.gravityScale *= -1;
             transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z - 180);
 
-            shouldMoveLeft = hasGravityBeenFlipped ? true : false; //
-        }
-
-        protected void Float()
-        {
-            rigidBody2D.gravityScale = 0;
-            rigidBody2D.velocity = Vector2.zero;
-        }
-
-        protected void StopFloat()
-        {
-            if (!hasGravityBeenFlipped)
-                rigidBody2D.gravityScale = 5; //CAMBIAR POR VARIABLE DE GRAVITYSCALE QUE SEA SERIALIZABLE O ALGO IDK
-            else
-                rigidBody2D.gravityScale = -5;
+            shouldMoveLeft = _isGravityInverted ? true : false; //
         }
 
         protected void CheckGravityChange()
         {
-            if (isGrounded)
+            if (_isGrounded)
                 ChangePlayerGravityScale();
         }
 
         protected void CheckTeleport()
         {
-            if (isGrounded)
+            if (_isGrounded)
                 CheckForWalkableTerrainAbove();
         }
 
@@ -203,7 +198,7 @@ namespace Stariluz
 
             foreach (RaycastHit2D hit in hits)
             {
-                if (hit.collider != null && hit.collider.CompareTag("Walkable") && isGrounded)
+                if (hit.collider != null && hit.collider.CompareTag("Walkable") && _isGrounded)
                 {
                     Teleport(hit);
                     break;
@@ -216,7 +211,7 @@ namespace Stariluz
             Vector2 impactPoint = hit.point;
             Vector2 newPosition = new Vector2(impactPoint.x, impactPoint.y - playerHeight / 2);
             transform.position = newPosition;
-            rigidBody2D.velocity = Vector2.zero;
+            _rigidBody2D.velocity = Vector2.zero;
             ChangePlayerGravityScale();
         }
 
