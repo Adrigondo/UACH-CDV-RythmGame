@@ -266,6 +266,8 @@ GameObject:
   - component: {fileID: 1289722175}
   - component: {fileID: 1289722174}
   - component: {fileID: 1289722176}
+  - component: {fileID: 1289722178}
+  - component: {fileID: 1289722177}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -424,10 +426,104 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b604d8e1c692dea478851468343dfac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityScale: 9.81
-  movementAngleInDegrees: 0
-  movementSpeed: 2.5
+  startLevelWithGravityFlipped: 0
+  startLevelMovingLeft: 0
   raycastLength: 15
+  gravityScale: 9.81
+  movementSpeed: 2.5
+  movementAngleInDegrees: 0
+  buttonHoldThreshold: 0.15
+--- !u!114 &1289722177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289722170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 36a32fe8877fd494fb7998d709cd47f3, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1289722176}
+        m_TargetAssemblyTypeName: Stariluz.NewPlayerBehavior, Assembly-CSharp
+        m_MethodName: OnChangeGravity
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 23cdac13-e3a2-4ed9-b29c-03878bf084c9
+    m_ActionName: Gameplay/ChangeGravity[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1289722176}
+        m_TargetAssemblyTypeName: Stariluz.NewPlayerBehavior, Assembly-CSharp
+        m_MethodName: OnTeleport
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 72133826-4177-41ea-9d31-8cc955bc8698
+    m_ActionName: Gameplay/Teleport[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1289722178}
+        m_TargetAssemblyTypeName: Stariluz.PlayerFloat, Assembly-CSharp
+        m_MethodName: OnFloat
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 18b458bb-26d3-4888-80e1-ea7b8f8a7a1e
+    m_ActionName: Gameplay/Float[/Mouse/rightButton]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &1289722178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289722170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc5c1a3e38fc73e49acb0fe403cfd5d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeLimit: 0.5
 --- !u!1 &1656353889
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +845,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 20.84
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -774,7 +870,7 @@ Transform:
   m_GameObject: {fileID: 1955960417}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 27, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
