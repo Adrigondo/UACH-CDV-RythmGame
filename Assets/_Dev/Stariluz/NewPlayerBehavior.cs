@@ -17,7 +17,6 @@ namespace Stariluz
         [SerializeField] protected bool startLevelMovingLeft = false;
         [SerializeField] protected float raycastLength = 15f;
         [SerializeField] protected float gravityScale = 5f;
-        [SerializeField] protected float movementSpeed = 5f;
         [SerializeField] protected float movementAngleInDegrees = 0;
         protected float movementAngleInRadians = 0;
         protected float playerHeight;
@@ -30,6 +29,7 @@ namespace Stariluz
         InputPlayer controls;
         private bool _isGravityInverted = false;
         private bool _isGrounded;
+        [SerializeField] private float _movementSpeed = 5f;
         private Rigidbody2D _rigidBody2D;
         #endregion
 
@@ -38,6 +38,23 @@ namespace Stariluz
         {
             get { return _isGrounded; }
         }
+        public bool IsGravityInverted
+        {
+            get { return _isGravityInverted; }
+        }
+        public float MovementSpeed
+        {
+            get { return _movementSpeed; }
+            // set
+            // {
+            //     if (value != null)
+            //     {
+            //         _rigidBody2D = value;
+            //     }
+            // }
+        }
+
+
         public Rigidbody2D RigidBody2D
         {
             get { return _rigidBody2D; }
@@ -49,10 +66,7 @@ namespace Stariluz
             //     }
             // }
         }
-        public bool IsGravityInverted
-        {
-            get { return _isGravityInverted; }
-        }
+
         #endregion
 
         #region "LifeCycle methods"
@@ -99,7 +113,7 @@ namespace Stariluz
             if (shouldMoveLeft)
                 movement.x *= -1;
 
-            transform.Translate(movement * movementSpeed * Time.deltaTime);
+            transform.Translate(movement * _movementSpeed * Time.deltaTime);
         }
 
         protected void OnTriggerEnter2D(Collider2D collision)
