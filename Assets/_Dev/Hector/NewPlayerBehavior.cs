@@ -86,6 +86,10 @@ public class NewPlayerBehavior : MonoBehaviour
             {
                 isGrounded = true;
             }
+            if (collision.gameObject.tag == "Hazard")
+            {
+                Death();
+            }
         }
 
         protected void OnCollisionExit2D(Collision2D collision)
@@ -209,8 +213,8 @@ public class NewPlayerBehavior : MonoBehaviour
         protected void CheckForWalkableTerrainAbove()
         {
             Vector2 raycastOrigin = transform.position;
-            raycastOrigin.y += (playerHeight / 2) + (playerHeight / 1000);
-            Vector2 upDirection = transform.TransformDirection(Vector2.up);
+            raycastOrigin.y += (hasGravityBeenFlipped ? 1 : -1) * ((playerHeight / 2) + (playerHeight / 1000));
+            Vector2 upDirection = transform.TransformDirection((hasGravityBeenFlipped ? 1 : -1) * Vector2.up);
             RaycastHit2D[] hits = Physics2D.RaycastAll(raycastOrigin, upDirection, raycastLength);
 
             foreach (RaycastHit2D hit in hits)
@@ -258,6 +262,11 @@ public class NewPlayerBehavior : MonoBehaviour
             Vector2 downDirection = transform.TransformDirection(Vector2.down);
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(raycastOrigin2, raycastOrigin2 + downDirection * raycastLength2);
+        }
+
+        protected void Death()
+        {
+            Debug.LogError("Death");
         }
     #endregion
 }
