@@ -1,13 +1,16 @@
 // TODO: Lock the teleport/gravity flip mechanics so they are only usable when grounded.
 // TODO: WHY DOES THE RAYCAST NOT DETECT THE GROUND WHAT IS GOING ON I'M SCARED.
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 namespace Stariluz
 {
-    public class NewPlayerBehavior : MonoBehaviour
+    public class NewPlayerBehavior : MonoBehaviour, InputPlayer.IGameplayActions
     {
         #region "Properties"
         [SerializeField] protected bool startLevelWithGravityFlipped = false;
@@ -27,10 +30,28 @@ namespace Stariluz
         protected bool isButtonHeldDown;
         protected Collider2D playerCollider;
         protected Rigidbody2D rigidBody2D;
+        InputPlayer controls;
         #endregion
 
 
         #region "LifeCycle functions"
+
+        public void OnEnable()
+        {
+            if (controls == null)
+            {
+                controls = new InputPlayer();
+                // Tell the "gameplay" action map that we want to get told about
+                // when actions get triggered.
+                controls.Gameplay.SetCallbacks(this);
+            }
+            controls.Gameplay.Enable();
+        }
+
+        public void OnDisable()
+        {
+            controls.Gameplay.Disable();
+        }
         protected void Start()
         {
             playerCollider = GetComponent<Collider2D>();
@@ -52,8 +73,6 @@ namespace Stariluz
 
         protected void Update()
         {
-            HandleActionInput();
-
             movementAngleInRadians = movementAngleInDegrees * Mathf.Deg2Rad;
             Vector2 movement = new Vector2(Mathf.Cos(movementAngleInRadians), Mathf.Sin(movementAngleInRadians));
             if (shouldMoveLeft)
@@ -94,72 +113,44 @@ namespace Stariluz
         }
         #endregion
 
-
-        #region "Protected methods"
-        /// <summary>
-        // This method handles the input of the player in-game.
-        // It exists only to not bloat the Update function, and improve readability.
-        /// </summary>
-        protected void HandleActionInput()
+        #region  "Public methods"
+        public void OnChangeGravity(InputAction.CallbackContext context)
         {
-            /// <summary>
-            // This first method exists to start a timer whenever the player starts pressing down the mouse button.
-            /// </summary>
-            if (Input.GetMouseButtonDown(0))
+            if (context.performed)
             {
-                buttonHeldDownTime = Time.time;
-                isButtonHeldDown = false;
+                CheckGravityChange();
             }
+        }
 
-            /// <summary>
-            // With the timer started, we know have to compare it with the 'buttonHeldDownTime' established before.
-            // Once the held button timer has surpassed the threshold, we can then assume the player is holding the button and...
-            // switch 'isButtonHeldDown' to True.
-            // And once that has been done, we can execute a method during the duration of the hold.
-            /// </summary>
-            if (Input.GetMouseButton(0))
+        public void OnFloat(InputAction.CallbackContext context)
+        {
+            if (context.started)
             {
-                if (!isButtonHeldDown && Time.time - buttonHeldDownTime > buttonHoldThreshold)
+                if (!isGrounded)
                 {
-                    isButtonHeldDown = true;
-                }
-
-                if (isButtonHeldDown)
-                {
-                    Debug.Log("BOTON MANTENIDO");
-                    if (isGrounded)
-                        CheckGravityChange();
-                    else
-                        Float();
+                    Float();
                 }
             }
-
-            /// <summary>
-            // For this last function, which takes care of the button release, we have two cases.
-            // If the button was held down beforehand, we can now call another method once it has been released.
-            // If, on the contrary, the button hold threshold wasn't met previously, then we can assume the player only...
-            // tapped the button instead, and we can perform the according action.
-            /// </summary>
-            if (Input.GetMouseButtonUp(0))
+            if (context.performed)
             {
-                if (isButtonHeldDown)
-                {
-                    Debug.Log("SOLTADO");
-                    StopFloat();
-                }
-                else
-                {
-                    Debug.Log("BOTON CLICKEADO");
-                    CheckGravityChange();
-                }
-            }
+                // if(context.interaction is HoldInteraction){
 
-            if (Input.GetMouseButtonDown(1))
+                //     Float();
+                // }
+                StopFloat();
+            }
+        }
+        public void OnTeleport(InputAction.CallbackContext context)
+        {
+            if (context.performed)
             {
                 CheckTeleport();
             }
         }
 
+        #endregion
+
+        #region "Protected methods"
         protected void ChangePlayerGravityScale()
         {
             hasGravityBeenFlipped = !hasGravityBeenFlipped; //

@@ -26,4 +26,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Dev/Leo/ScenesLeo/Level2.unity
     guid: 01ec466afb986154e8110588d4ac8339
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: a93b28e53b387f747982f216a5755c2f, type: 2}
