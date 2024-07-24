@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Stariluz
@@ -16,8 +17,9 @@ namespace Stariluz
         #region "LyfeCycle Methods"
         protected void Start()
         {
-            if (audioClip != null)
+            if (audioClip != null && PlayerBehavior != null)
             {
+                transform.position=PlayerBehavior.StartPositionScript.GetStartPosition();
                 float[] samples = new float[audioClip.samples * audioClip.channels];
                 audioClip.GetData(samples, 0);
                 waveformPoints = GenerateWaveform(samples);
@@ -32,8 +34,9 @@ namespace Stariluz
         }
         protected void OnDrawGizmos()
         {
-            if (audioClip != null && waveformPoints == null)
+            if (audioClip != null && waveformPoints == null && PlayerBehavior != null)
             {
+                transform.position=PlayerBehavior.StartPositionScript.GetStartPosition();
                 float[] samples = new float[audioClip.samples * audioClip.channels];
                 audioClip.GetData(samples, 0);
                 waveformPoints = GenerateWaveform(samples);
@@ -43,7 +46,7 @@ namespace Stariluz
             {
                 Vector3 scale = lineRenderer.transform.localScale;
                 Gizmos.color = Color.magenta;
-                
+
                 for (int i = 0; i < waveformPoints.Length - 1; i++)
                 {
                     Vector3 origin = transform.position + new Vector3(waveformPoints[i].x, waveformPoints[i].y * scale.y, waveformPoints[i].z);

@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class StartPosition : MonoBehaviour
 {
-    protected Vector3 startPositon;
+    // protected Vector3 startPositon;
 
     void Start()
     {
-        startPositon = transform.position;
+        // startPositon = transform.position;
     }
 
     public Vector3 GetStartPosition()
     {
-        return startPositon;
+        return transform.position;
     }
 }
