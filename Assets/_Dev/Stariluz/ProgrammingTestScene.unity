@@ -1190,6 +1190,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &955577034 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3112430982302477731, guid: be5da33f014d32d4384153cc1a10cebd, type: 3}
+  m_PrefabInstance: {fileID: 1198251713}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1198251713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1430,6 +1435,7 @@ MonoBehaviour:
   gravityScale: 1
   movementAngleInDegrees: 0
   cameraBehavior: {fileID: 1955960421}
+  audioSource: {fileID: 955577034}
   _movementSpeed: 8
   _startPositionScript: {fileID: 596966018}
 --- !u!114 &1289722178

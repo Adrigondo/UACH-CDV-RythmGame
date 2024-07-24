@@ -19,6 +19,7 @@ namespace Stariluz
         [SerializeField] protected float gravityScale = 5f;
         [SerializeField] protected float movementAngleInDegrees = 0;
         [SerializeField] protected CameraBehavior cameraBehavior;
+        [SerializeField] protected AudioSource audioSource;
         [SerializeField] private float _movementSpeed = 5f;
         [SerializeField] private StartPosition _startPositionScript;
         protected float movementAngleInRadians = 0;
@@ -148,7 +149,7 @@ namespace Stariluz
                 _isGrounded = false;
             }
         }
-        
+
         protected void OnDrawGizmos()
         {
             Vector2 raycastOrigin = transform.position;
@@ -259,8 +260,13 @@ namespace Stariluz
 
         protected void Death()
         {
-            Debug.LogAssertion("Death");
+            // Debug.LogAssertion("Death");
             RespawnPlayer();
+
+            if (_isGravityInverted)
+            {
+                ChangePlayerGravityScale();
+            }
 
             if (cameraBehavior != null)
             {
@@ -269,6 +275,19 @@ namespace Stariluz
             else
             {
                 Debug.LogError("No Camera Behavior script found");
+            }
+
+            if (audioSource != null)
+            {
+                if (audioSource.isPlaying)
+                {
+                    audioSource.Stop();
+                }
+                audioSource.Play();
+            }
+            else
+            {
+                Debug.LogError("No Audio Source script found");
             }
         }
 
