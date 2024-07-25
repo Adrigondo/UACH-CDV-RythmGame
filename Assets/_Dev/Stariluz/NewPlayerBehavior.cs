@@ -17,13 +17,15 @@ namespace Stariluz
         [SerializeField] protected bool startLevelMovingLeft = false;
         [SerializeField] protected float raycastLength = 15f;
         [SerializeField] protected float gravityScale = 5f;
-        [SerializeField] protected float movementSpeed = 5f;
         [SerializeField] protected float movementAngleInDegrees = 0;
+        [SerializeField] protected CameraBehavior cameraBehavior;
+        [SerializeField] protected AudioSource audioSource;
+        [SerializeField] private float _movementSpeed = 5f;
+        [SerializeField] private StartPosition _startPositionScript;
         protected float movementAngleInRadians = 0;
         protected float playerHeight;
         protected bool shouldMoveLeft = false;
         protected bool canFloat;
-        [SerializeField] protected float buttonHoldThreshold = 0.15f;
         protected float buttonHeldDownTime;
         protected bool isButtonHeldDown;
         protected Collider2D playerCollider;
@@ -38,6 +40,21 @@ namespace Stariluz
         {
             get { return _isGrounded; }
         }
+        public bool IsGravityInverted
+        {
+            get { return _isGravityInverted; }
+        }
+        public float MovementSpeed
+        {
+            get { return _movementSpeed; }
+            // set
+            // {
+            //     if (value != null)
+            //     {
+            //         _rigidBody2D = value;
+            //     }
+            // }
+        }
         public Rigidbody2D RigidBody2D
         {
             get { return _rigidBody2D; }
@@ -49,30 +66,20 @@ namespace Stariluz
             //     }
             // }
         }
-        public bool IsGravityInverted
+        public StartPosition StartPositionScript
         {
-            get { return _isGravityInverted; }
+            get { return _startPositionScript; }
+            // set
+            // {
+            //     if (value != null)
+            //     {
+            //         _rigidBody2D = value;
+            //     }
+            // }
         }
         #endregion
 
         #region "LifeCycle methods"
-
-        // public void OnEnable()
-        // {
-        //     if (controls == null)
-        //     {
-        //         controls = new InputPlayer();
-        //         // Tell the "gameplay" action map that we want to get told about
-        //         // when actions get triggered.
-        //         controls.Gameplay.SetCallbacks(this);
-        //     }
-        //     controls.Gameplay.Enable();
-        // }
-
-        // public void OnDisable()
-        // {
-        //     controls.Gameplay.Disable();
-        // }
         protected void Start()
         {
             playerCollider = GetComponent<Collider2D>();
@@ -90,6 +97,8 @@ namespace Stariluz
                 _isGravityInverted = true;
             if (startLevelMovingLeft)
                 shouldMoveLeft = true;
+
+            RespawnPlayer();
         }
 
         protected void Update()
@@ -99,11 +108,15 @@ namespace Stariluz
             if (shouldMoveLeft)
                 movement.x *= -1;
 
-            transform.Translate(movement * movementSpeed * Time.deltaTime);
+            transform.Translate(movement * _movementSpeed * Time.deltaTime);
         }
 
         protected void OnTriggerEnter2D(Collider2D collision)
         {
+            if (collision.gameObject.tag == "FinishTrigger")
+            {
+                FinishLevel();
+            }
             /* if (collision.gameObject.tag == "GravityTrigger")
             {
                 GravityTrigger triggerScript = collision.gameObject.GetComponent<GravityTrigger>();
@@ -123,6 +136,10 @@ namespace Stariluz
             {
                 _isGrounded = true;
             }
+            if (collision.gameObject.tag == "Hazard")
+            {
+                Death();
+            }
         }
 
         protected void OnCollisionExit2D(Collision2D collision)
@@ -131,6 +148,15 @@ namespace Stariluz
             {
                 _isGrounded = false;
             }
+        }
+
+        protected void OnDrawGizmos()
+        {
+            Vector2 raycastOrigin = transform.position;
+            raycastOrigin.y += (playerHeight / 2) + (playerHeight / 1000);
+            Vector2 upDirection = transform.TransformDirection(Vector2.up);
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(raycastOrigin, raycastOrigin + upDirection * raycastLength);
         }
         #endregion
 
@@ -153,20 +179,24 @@ namespace Stariluz
         public void ResetGravityScale()
         {
             if (!IsGravityInverted)
-                RigidBody2D.gravityScale = gravityScale; //CAMBIAR POR VARIABLE DE GRAVITYSCALE QUE SEA SERIALIZABLE O ALGO IDK
+                RigidBody2D.gravityScale = gravityScale;
             else
                 RigidBody2D.gravityScale = -gravityScale;
         }
         #endregion
 
         #region "Protected methods"
+        protected void RespawnPlayer()
+        {
+            transform.position = _startPositionScript.GetStartPosition();
+        }
         protected void ChangePlayerGravityScale()
         {
-            _isGravityInverted = !_isGravityInverted; //
+            _isGravityInverted = !_isGravityInverted;
             _rigidBody2D.gravityScale *= -1;
             transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z - 180);
 
-            shouldMoveLeft = _isGravityInverted ? true : false; //
+            shouldMoveLeft = _isGravityInverted ? true : false;
         }
 
         protected void CheckGravityChange()
@@ -209,7 +239,7 @@ namespace Stariluz
         protected void Teleport(RaycastHit2D hit)
         {
             Vector2 impactPoint = hit.point;
-            Vector2 newPosition = new Vector2(impactPoint.x, impactPoint.y - playerHeight / 2);
+            Vector2 newPosition = new Vector2(impactPoint.x, impactPoint.y + (_isGravityInverted ? 1 : -1) * playerHeight / 2);
             transform.position = newPosition;
             _rigidBody2D.velocity = Vector2.zero;
             ChangePlayerGravityScale();
@@ -228,19 +258,42 @@ namespace Stariluz
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
 
-        protected void OnDrawGizmos()
+        protected void Death()
         {
-            Vector2 raycastOrigin = transform.position;
-            raycastOrigin.y += (playerHeight / 2) + (playerHeight / 1000);
-            Vector2 upDirection = transform.TransformDirection(Vector2.up);
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(raycastOrigin, raycastOrigin + upDirection * raycastLength);
+            // Debug.LogAssertion("Death");
+            RespawnPlayer();
 
-            Vector2 raycastOrigin2 = transform.position;
-            float raycastLength2 = playerHeight;
-            Vector2 downDirection = transform.TransformDirection(Vector2.down);
-            Gizmos.color = Color.blue;
-            Gizmos.DrawLine(raycastOrigin2, raycastOrigin2 + downDirection * raycastLength2);
+            if (_isGravityInverted)
+            {
+                ChangePlayerGravityScale();
+            }
+
+            if (cameraBehavior != null)
+            {
+                cameraBehavior.RestartCamera();
+            }
+            else
+            {
+                Debug.LogError("No Camera Behavior script found");
+            }
+
+            if (audioSource != null)
+            {
+                if (audioSource.isPlaying)
+                {
+                    audioSource.Stop();
+                }
+                audioSource.Play();
+            }
+            else
+            {
+                Debug.LogError("No Audio Source script found");
+            }
+        }
+
+        protected void FinishLevel()
+        {
+            Debug.LogWarning("FELICIDADES TERMINASTE EL NIVEL");
         }
         #endregion
     }
