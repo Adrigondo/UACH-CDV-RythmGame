@@ -26,5 +26,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Dev/Leo/ScenesLeo/Level2.unity
     guid: 01ec466afb986154e8110588d4ac8339
+  - enabled: 1
+    path: Assets/_Dev/Hector/Levels/S_Level02.unity
+    guid: a55cff6c529865e45997872043e97fc5
+  - enabled: 1
+    path: Assets/_Dev/Hector/Levels/S_Level01.unity
+    guid: f1bdff382e72c174fa5e231c25abfd60
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a93b28e53b387f747982f216a5755c2f, type: 2}
