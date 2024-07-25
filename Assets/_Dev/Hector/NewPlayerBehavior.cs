@@ -24,6 +24,7 @@ public class NewPlayerBehavior : MonoBehaviour
         [SerializeField] protected CameraBehavior cameraBehavior;
         [SerializeField] protected AudioSource audioSource;
         [SerializeField] private float _movementSpeed = 5f;
+        [SerializeField] protected SceneChanger sceneChanger;
         [SerializeField] private StartPosition _startPositionScript;
         protected float movementAngleInRadians = 0;
         protected float playerHeight;
@@ -296,7 +297,7 @@ public class NewPlayerBehavior : MonoBehaviour
 
         protected void FinishLevel()
         {
-            Debug.LogWarning("FELICIDADES TERMINASTE EL NIVEL");
+            sceneChanger.ChangeSceneWithCode("LevelsMenuV3");
         }
         #endregion
     }

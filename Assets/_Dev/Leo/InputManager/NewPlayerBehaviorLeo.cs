@@ -6,41 +6,87 @@
 
 // TODO: Is the float only meant to happen after switching gravity manually? Or will we allow it when in the middle of the air even if no player input happened before?... huh
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class NewPlayerBehaviorLeo : MonoBehaviour
-{
-    #region "Properties"
+    {
+        #region "Fields"
         [SerializeField] protected bool startLevelWithGravityFlipped = false;
         [SerializeField] protected bool startLevelMovingLeft = false;
         [SerializeField] protected float raycastLength = 15f;
-        [SerializeField] protected float gravityScale = 1f;
-        [SerializeField] protected float movementSpeed = 5f;
+        [SerializeField] protected float gravityScale = 5f;
         [SerializeField] protected float movementAngleInDegrees = 0;
+        [SerializeField] protected CameraBehavior cameraBehavior;
+        [SerializeField] protected AudioSource audioSource;
+        [SerializeField] private float _movementSpeed = 5f;
+        [SerializeField] private StartPosition _startPositionScript;
         protected float movementAngleInRadians = 0;
         protected float playerHeight;
-        protected bool hasGravityBeenFlipped = false;
         protected bool shouldMoveLeft = false;
-        protected bool isGrounded;
         protected bool canFloat;
-        [SerializeField] protected float buttonHoldThreshold = 0.15f;
         protected float buttonHeldDownTime;
         protected bool isButtonHeldDown;
         protected Collider2D playerCollider;
-        protected Rigidbody2D rigidBody2D;
-        [SerializeField] protected StartPosition startPositionScript;
-        [SerializeField] protected CameraBehavior cameraBehavior;
-    #endregion
+        Stariluz.InputPlayer controls;
+        private bool _isGravityInverted = false;
+        private bool _isGrounded;
+        private Rigidbody2D _rigidBody2D;
+        #endregion
 
+        #region "Properties"
+        public bool IsGrounded
+        {
+            get { return _isGrounded; }
+        }
+        public bool IsGravityInverted
+        {
+            get { return _isGravityInverted; }
+        }
+        public float MovementSpeed
+        {
+            get { return _movementSpeed; }
+            // set
+            // {
+            //     if (value != null)
+            //     {
+            //         _rigidBody2D = value;
+            //     }
+            // }
+        }
+        public Rigidbody2D RigidBody2D
+        {
+            get { return _rigidBody2D; }
+            // set
+            // {
+            //     if (value != null)
+            //     {
+            //         _rigidBody2D = value;
+            //     }
+            // }
+        }
+        public StartPosition StartPositionScript
+        {
+            get { return _startPositionScript; }
+            // set
+            // {
+            //     if (value != null)
+            //     {
+            //         _rigidBody2D = value;
+            //     }
+            // }
+        }
+        #endregion
 
-    #region "LifeCycle functions"
+        #region "LifeCycle methods"
         protected void Start()
         {
             playerCollider = GetComponent<Collider2D>();
-            rigidBody2D = GetComponent<Rigidbody2D>();
-
+            _rigidBody2D = GetComponent<Rigidbody2D>();
             if (playerCollider != null)
             {
                 playerHeight = playerCollider.bounds.size.y;
@@ -51,7 +97,7 @@ public class NewPlayerBehaviorLeo : MonoBehaviour
             }
 
             if (startLevelWithGravityFlipped)
-                hasGravityBeenFlipped = true;
+                _isGravityInverted = true;
             if (startLevelMovingLeft)
                 shouldMoveLeft = true;
 
@@ -60,14 +106,12 @@ public class NewPlayerBehaviorLeo : MonoBehaviour
 
         protected void Update()
         {
-            HandleActionInput();
-
             movementAngleInRadians = movementAngleInDegrees * Mathf.Deg2Rad;
             Vector2 movement = new Vector2(Mathf.Cos(movementAngleInRadians), Mathf.Sin(movementAngleInRadians));
             if (shouldMoveLeft)
                 movement.x *= -1;
 
-            transform.Translate(movement * movementSpeed * Time.deltaTime);
+            transform.Translate(movement * _movementSpeed * Time.deltaTime);
         }
 
         protected void OnTriggerEnter2D(Collider2D collision)
@@ -93,7 +137,7 @@ public class NewPlayerBehaviorLeo : MonoBehaviour
         {
             if (collision.gameObject.tag == "Walkable")
             {
-                isGrounded = true;
+                _isGrounded = true;
             }
             if (collision.gameObject.tag == "Hazard")
             {
@@ -105,115 +149,68 @@ public class NewPlayerBehaviorLeo : MonoBehaviour
         {
             if (collision.gameObject.tag == "Walkable")
             {
-                isGrounded = false;
+                _isGrounded = false;
             }
         }
-    #endregion
 
-
-    #region "Protected methods"
-        /// <summary>
-        // This method handles the input of the player in-game.
-        // It exists only to not bloat the Update function, and improve readability.
-        /// </summary>
-        protected void HandleActionInput()
+        protected void OnDrawGizmos()
         {
-            /// <summary>
-            // This first method exists to start a timer whenever the player starts pressing down the mouse button.
-            /// </summary>
-            if (Input.GetMouseButtonDown(0))
+            Vector2 raycastOrigin = transform.position;
+            raycastOrigin.y += (playerHeight / 2) + (playerHeight / 1000);
+            Vector2 upDirection = transform.TransformDirection(Vector2.up);
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(raycastOrigin, raycastOrigin + upDirection * raycastLength);
+        }
+        #endregion
+
+        #region  "Public methods"
+        public void OnChangeGravity(InputAction.CallbackContext context)
+        {
+            if (context.performed)
             {
-                buttonHeldDownTime = Time.time;
-                isButtonHeldDown = false;
+                CheckGravityChange();
             }
+        }
 
-            /// <summary>
-            // With the timer started, we know have to compare it with the 'buttonHeldDownTime' established before.
-            // Once the held button timer has surpassed the threshold, we can then assume the player is holding the button and...
-            // switch 'isButtonHeldDown' to True.
-            // And once that has been done, we can execute a method during the duration of the hold.
-            /// </summary>
-            if (Input.GetMouseButton(0))
-            {
-                if (!isButtonHeldDown && Time.time - buttonHeldDownTime > buttonHoldThreshold)
-                {
-                    isButtonHeldDown = true;
-                }
-
-                if (isButtonHeldDown)
-                {
-                    Debug.Log("BOTON MANTENIDO");
-                    if (isGrounded)
-                        CheckGravityChange();
-                    else
-                        Float();
-                }
-            }
-
-            /// <summary>
-            // For this last function, which takes care of the button release, we have two cases.
-            // If the button was held down beforehand, we can now call another method once it has been released.
-            // If, on the contrary, the button hold threshold wasn't met previously, then we can assume the player only...
-            // tapped the button instead, and we can perform the according action.
-            /// </summary>
-            if (Input.GetMouseButtonUp(0))
-            {
-                if (isButtonHeldDown)
-                {
-                    Debug.Log("SOLTADO");
-                    StopFloat();
-                }
-                else
-                {
-                    Debug.Log("BOTON CLICKEADO");
-                    CheckGravityChange();
-                }
-            }
-
-            if (Input.GetMouseButtonDown(1))
+        public void OnTeleport(InputAction.CallbackContext context)
+        {
+            if (context.performed)
             {
                 CheckTeleport();
             }
         }
+        public void ResetGravityScale()
+        {
+            if (!IsGravityInverted)
+                RigidBody2D.gravityScale = gravityScale;
+            else
+                RigidBody2D.gravityScale = -gravityScale;
+        }
+        #endregion
 
+        #region "Protected methods"
         protected void RespawnPlayer()
         {
-            transform.position = startPositionScript.GetStartPosition();
+            transform.position = _startPositionScript.GetStartPosition();
         }
-
-
         protected void ChangePlayerGravityScale()
         {
-            hasGravityBeenFlipped = !hasGravityBeenFlipped; //
-            rigidBody2D.gravityScale *= -1;
+            _isGravityInverted = !_isGravityInverted;
+            _rigidBody2D.gravityScale *= -1;
             transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z - 180);
 
-            shouldMoveLeft = hasGravityBeenFlipped ? true : false; //
-        }
-
-        protected void Float()
-        {
-            rigidBody2D.gravityScale = 0;
-            rigidBody2D.velocity = Vector2.zero;
-        }
-
-        protected void StopFloat()
-        {
-            if (!hasGravityBeenFlipped)
-                rigidBody2D.gravityScale = 5; //CAMBIAR POR VARIABLE DE GRAVITYSCALE QUE SEA SERIALIZABLE O ALGO IDK
-            else
-                rigidBody2D.gravityScale = -5;
+            shouldMoveLeft = _isGravityInverted ? true : false;
         }
 
         protected void CheckGravityChange()
         {
-            if (isGrounded)
+            if (_isGrounded)
                 ChangePlayerGravityScale();
         }
 
         protected void CheckTeleport()
         {
-            if (isGrounded)
+            if (_isGrounded)
                 CheckForWalkableTerrainAbove();
         }
 
@@ -233,8 +230,8 @@ public class NewPlayerBehaviorLeo : MonoBehaviour
             RaycastHit2D[] hits = Physics2D.RaycastAll(raycastOrigin, upDirection, raycastLength);
 
             foreach (RaycastHit2D hit in hits)
-            {   
-                if (hit.collider != null && hit.collider.CompareTag("Walkable") && isGrounded)
+            {
+                if (hit.collider != null && hit.collider.CompareTag("Walkable") && _isGrounded)
                 {
                     Teleport(hit);
                     break;
@@ -245,9 +242,9 @@ public class NewPlayerBehaviorLeo : MonoBehaviour
         protected void Teleport(RaycastHit2D hit)
         {
             Vector2 impactPoint = hit.point;
-            Vector2 newPosition = new Vector2(impactPoint.x, impactPoint.y + (hasGravityBeenFlipped ? 1 : -1) * playerHeight / 2);
+            Vector2 newPosition = new Vector2(impactPoint.x, impactPoint.y + (_isGravityInverted ? 1 : -1) * playerHeight / 2);
             transform.position = newPosition;
-            rigidBody2D.velocity = Vector2.zero;
+            _rigidBody2D.velocity = Vector2.zero;
             ChangePlayerGravityScale();
         }
 
@@ -264,19 +261,15 @@ public class NewPlayerBehaviorLeo : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
 
-        protected void OnDrawGizmos()
-        {
-            Vector2 raycastOrigin = transform.position;
-            raycastOrigin.y += (playerHeight / 2) + (playerHeight / 1000);
-            Vector2 upDirection = transform.TransformDirection(Vector2.up);
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(raycastOrigin, raycastOrigin + upDirection * raycastLength);
-        }
-
         protected void Death()
         {
-            Debug.LogAssertion("Death");
+            // Debug.LogAssertion("Death");
             RespawnPlayer();
+
+            if (_isGravityInverted)
+            {
+                ChangePlayerGravityScale();
+            }
 
             if (cameraBehavior != null)
             {
@@ -286,11 +279,24 @@ public class NewPlayerBehaviorLeo : MonoBehaviour
             {
                 Debug.LogError("No Camera Behavior script found");
             }
+
+            if (audioSource != null)
+            {
+                if (audioSource.isPlaying)
+                {
+                    audioSource.Stop();
+                }
+                audioSource.Play();
+            }
+            else
+            {
+                Debug.LogError("No Audio Source script found");
+            }
         }
 
         protected void FinishLevel()
         {
             Debug.LogWarning("FELICIDADES TERMINASTE EL NIVEL");
         }
-    #endregion
-}
+        #endregion
+    }
