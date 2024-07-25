@@ -61,7 +61,7 @@ namespace Stariluz
                 {
                     ""name"": """",
                     ""id"": ""fd0db487-fb59-4233-bef0-255e69ec0685"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
@@ -72,7 +72,7 @@ namespace Stariluz
                 {
                     ""name"": """",
                     ""id"": ""cf3d40b2-def5-445e-a02b-479d87d62b23"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
@@ -83,7 +83,7 @@ namespace Stariluz
                 {
                     ""name"": """",
                     ""id"": ""a4fbe59d-f20b-4063-ac21-359323703de2"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": ""Press(behavior=1)"",
                     ""processors"": """",
                     ""groups"": """",
