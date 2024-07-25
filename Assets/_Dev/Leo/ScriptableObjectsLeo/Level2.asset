@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6402cd49b902ac846b153fd851f0da1b, type: 3}
   m_Name: Level2
   m_EditorClassIdentifier: 
-  levelName: Heaven
+  levelName: S_Level02
   levelNumber: 2
   musicLevel: {fileID: 0}
   maximumscore: 20000
   levelImages:
   - {fileID: 21300000, guid: c83dc5ace48b1444cb941e7160ae9caf, type: 3}
-  levelScene: Level2
+  levelScene: S_Level02
