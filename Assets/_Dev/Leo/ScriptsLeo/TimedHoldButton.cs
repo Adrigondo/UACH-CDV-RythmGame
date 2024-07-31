@@ -22,7 +22,7 @@ public class TimedHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     protected bool IsOnClick = false;
 
 
-    void Start()
+    void OnEnable()
     {
         SceneChanger.SetActive(false);
         ImageFill.GetComponent<Image>();
@@ -46,13 +46,16 @@ public class TimedHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     {
         IsOnClick = true;
         CurrentHeldTime = 0f;
+        Debug.Log("ClickDown");
     }
+
 
     public void OnPointerUp(PointerEventData eventData)
     {
         IsOnClick = false;
         CurrentHeldTime = 0f;
         ImageFill.fillAmount = 0;
+        Debug.Log("ClickUp");
     }
 
     private void OnHoldComplete()
