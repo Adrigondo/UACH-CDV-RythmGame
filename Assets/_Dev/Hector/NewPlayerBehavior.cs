@@ -269,7 +269,7 @@ public class NewPlayerBehavior : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    protected void Death()
+    public void Death()
     {
         // Debug.LogAssertion("Death");
         RespawnPlayer();

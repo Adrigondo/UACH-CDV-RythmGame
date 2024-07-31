@@ -16,6 +16,7 @@ public class TimedHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     [Tooltip("The time the button must be hold pressed to complete the action.")]
     protected float SuccessTime;
 
+    [SerializeField]
     protected float CurrentHeldTime = 0f;
     
     protected bool IsOnClick = false;
@@ -57,5 +58,7 @@ public class TimedHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     private void OnHoldComplete()
     {
         SceneChanger.SetActive(true);
+        ImageFill.fillAmount = 0;
+        CurrentHeldTime = 0f;
     }
 }
