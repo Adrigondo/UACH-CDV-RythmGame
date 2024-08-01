@@ -42,7 +42,7 @@ public class DataPersistanceManager : MonoBehaviour
 
         if (this.gameData == null)
         {
-            Debug.Log("No data was found. Initializing to defaults.");
+            /* Debug.Log("No data was found. Initializing to defaults."); */
             NewGame();
         }
 
@@ -51,8 +51,8 @@ public class DataPersistanceManager : MonoBehaviour
             dataPersistanceObj.LoadData(gameData);
         }
 
-        Debug.Log("Loaded music volume = " + gameData.MusicVolume);
-        Debug.Log("Loaded SFX volume = " + gameData.SFXVolume);
+        /* Debug.Log("Loaded music volume = " + gameData.MusicVolume);
+        Debug.Log("Loaded SFX volume = " + gameData.SFXVolume); */
     }
 
     public void SaveGame()
@@ -62,8 +62,8 @@ public class DataPersistanceManager : MonoBehaviour
             dataPersistanceObj.SaveData(ref gameData);
         }
 
-        Debug.Log("Saved music volume = " + gameData.MusicVolume);
-        Debug.Log("Saved SFX volume = " + gameData.SFXVolume);
+        /* Debug.Log("Saved music volume = " + gameData.MusicVolume);
+        Debug.Log("Saved SFX volume = " + gameData.SFXVolume); */
 
         dataHandler.Save(gameData);
     }
