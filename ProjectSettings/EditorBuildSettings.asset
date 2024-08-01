@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/_Dev/Hector/Levels/S_Level01.unity
     guid: a55cff6c529865e45997872043e97fc5
   - enabled: 1
-    path: Assets/_Dev/Leo/ScenesLeo/LevelsMenuV4.unity
-    guid: 54a245fe7a2240b4aaae72090c5274e1
+    path: Assets/_Dev/Leo/ScenesLeo/EndGameScene.unity
+    guid: 161b0befb0606104494c896e99997ae6
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a93b28e53b387f747982f216a5755c2f, type: 2}

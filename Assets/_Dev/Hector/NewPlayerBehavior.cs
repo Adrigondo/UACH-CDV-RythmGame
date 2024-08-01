@@ -324,7 +324,7 @@ public class NewPlayerBehavior : MonoBehaviour
     protected void FinishLevel()
     {
         scoreManager.AddUpFinalScore();
-        sceneChanger.ChangeSceneWithCode("LevelsMenuV3");
+        sceneChanger.ChangeSceneWithCode("EndGameScene");
     }
     #endregion
 }
