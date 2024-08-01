@@ -165,11 +165,38 @@ public class NewPlayerBehavior : MonoBehaviour
     #endregion
 
     #region  "Public methods"
+    private bool canSlide = true;
     public void OnChangeGravity(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            CheckGravityChange();
+            Debug.Log((context.action.activeControl.device, context.action.activeControl.name, context.action.activeControl.displayName));
+            if (context.action.activeControl.device is Touchscreen)
+            {
+                if (context.action.activeControl.name == "up")
+                {
+                    if (!IsGravityInverted && canSlide)
+                    {
+                        canSlide = false;
+                        CheckGravityChange();
+                    }
+
+                }
+                else if (context.action.activeControl.name == "down")
+                {
+                    if (IsGravityInverted && canSlide)
+                    {
+                        canSlide = false;
+                        CheckGravityChange();
+
+                    }
+                }
+
+            }
+            else
+            {
+                CheckGravityChange();
+            }
         }
     }
 
@@ -180,6 +207,15 @@ public class NewPlayerBehavior : MonoBehaviour
             CheckTeleport();
         }
     }
+
+    public void OnSlideEnd(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            canSlide = true;
+        }
+    }
+
     public void ResetGravityScale()
     {
         if (!IsGravityInverted)

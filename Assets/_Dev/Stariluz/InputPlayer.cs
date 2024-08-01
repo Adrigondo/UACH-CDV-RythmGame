@@ -55,6 +55,15 @@ namespace Stariluz
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SlideEnd"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""28203892-f73f-445a-9eb1-6cf2d23c36e4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -70,10 +79,87 @@ namespace Stariluz
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": ""Slide Up"",
+                    ""id"": ""bc644a5a-edcc-44f1-a9dc-77368aff36b0"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeGravity"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""7680a415-3312-46ee-9809-0756ab1122da"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeGravity"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""d532a86e-1948-4f89-bbde-ef19d8579ab7"",
+                    ""path"": ""<Touchscreen>/delta/up"",
+                    ""interactions"": """",
+                    ""processors"": ""StickDeadzone(min=0.2,max=0.4)"",
+                    ""groups"": """",
+                    ""action"": ""ChangeGravity"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Slide Down"",
+                    ""id"": ""eec9e748-bdf6-4056-a97b-603d6b466b63"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeGravity"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""6e79cad0-a569-4ebc-9bac-20c23ac7605f"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeGravity"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""8f90a25e-fd94-409b-9e9f-ec42645b9d03"",
+                    ""path"": ""<Touchscreen>/delta/down"",
+                    ""interactions"": """",
+                    ""processors"": ""StickDeadzone(min=0.2,max=0.4)"",
+                    ""groups"": """",
+                    ""action"": ""ChangeGravity"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""cf3d40b2-def5-445e-a02b-479d87d62b23"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Teleport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4de9a6f4-2713-4fcc-822b-02583a5c4d1a"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Teleport"",
@@ -90,6 +176,28 @@ namespace Stariluz
                     ""action"": ""Float"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9a9e337d-39fd-4727-9665-a77e2abc0c8b"",
+                    ""path"": ""<Touchscreen>/primaryTouch/press"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Float"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""61914c7f-4ad0-467e-96d1-c64253aa6a7a"",
+                    ""path"": ""<Touchscreen>/primaryTouch/press"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SlideEnd"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -101,6 +209,7 @@ namespace Stariluz
             m_Gameplay_ChangeGravity = m_Gameplay.FindAction("ChangeGravity", throwIfNotFound: true);
             m_Gameplay_Teleport = m_Gameplay.FindAction("Teleport", throwIfNotFound: true);
             m_Gameplay_Float = m_Gameplay.FindAction("Float", throwIfNotFound: true);
+            m_Gameplay_SlideEnd = m_Gameplay.FindAction("SlideEnd", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -165,6 +274,7 @@ namespace Stariluz
         private readonly InputAction m_Gameplay_ChangeGravity;
         private readonly InputAction m_Gameplay_Teleport;
         private readonly InputAction m_Gameplay_Float;
+        private readonly InputAction m_Gameplay_SlideEnd;
         public struct GameplayActions
         {
             private @InputPlayer m_Wrapper;
@@ -172,6 +282,7 @@ namespace Stariluz
             public InputAction @ChangeGravity => m_Wrapper.m_Gameplay_ChangeGravity;
             public InputAction @Teleport => m_Wrapper.m_Gameplay_Teleport;
             public InputAction @Float => m_Wrapper.m_Gameplay_Float;
+            public InputAction @SlideEnd => m_Wrapper.m_Gameplay_SlideEnd;
             public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -190,6 +301,9 @@ namespace Stariluz
                 @Float.started += instance.OnFloat;
                 @Float.performed += instance.OnFloat;
                 @Float.canceled += instance.OnFloat;
+                @SlideEnd.started += instance.OnSlideEnd;
+                @SlideEnd.performed += instance.OnSlideEnd;
+                @SlideEnd.canceled += instance.OnSlideEnd;
             }
 
             private void UnregisterCallbacks(IGameplayActions instance)
@@ -203,6 +317,9 @@ namespace Stariluz
                 @Float.started -= instance.OnFloat;
                 @Float.performed -= instance.OnFloat;
                 @Float.canceled -= instance.OnFloat;
+                @SlideEnd.started -= instance.OnSlideEnd;
+                @SlideEnd.performed -= instance.OnSlideEnd;
+                @SlideEnd.canceled -= instance.OnSlideEnd;
             }
 
             public void RemoveCallbacks(IGameplayActions instance)
@@ -225,6 +342,7 @@ namespace Stariluz
             void OnChangeGravity(InputAction.CallbackContext context);
             void OnTeleport(InputAction.CallbackContext context);
             void OnFloat(InputAction.CallbackContext context);
+            void OnSlideEnd(InputAction.CallbackContext context);
         }
     }
 }
