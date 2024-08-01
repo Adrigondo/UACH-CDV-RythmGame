@@ -15,11 +15,9 @@ public class TimedHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     [SerializeField]
     [Tooltip("The time the button must be hold pressed to complete the action.")]
     protected float SuccessTime;
-
-    [SerializeField]
     protected float CurrentHeldTime = 0f;
     
-    protected bool IsOnClick = false;
+    protected bool IsClicked = false;
 
 
     void Start()
@@ -30,27 +28,28 @@ public class TimedHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     }
     void Update()
     {
-        if (IsOnClick)
+        if (IsClicked)
         {
             CurrentHeldTime += Time.deltaTime;
+            Debug.Log(Time.deltaTime);
             ImageFill.fillAmount = CurrentHeldTime/SuccessTime;
             if (CurrentHeldTime >= SuccessTime)
             {
                 OnHoldComplete();
-                IsOnClick = false; // Evita que se llame repetidamente
+                IsClicked= false; // Evita que se llame repetidamente
             }
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        IsOnClick = true;
+        IsClicked = true;
         CurrentHeldTime = 0f;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        IsOnClick = false;
+        IsClicked = false;
         CurrentHeldTime = 0f;
         ImageFill.fillAmount = 0;
     }

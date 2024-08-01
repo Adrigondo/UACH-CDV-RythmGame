@@ -9,6 +9,7 @@ TagManager:
   - Hazard
   - SpeedTrigger
   - FinishTrigger
+  - Coin
   layers:
   - Default
   - TransparentFX

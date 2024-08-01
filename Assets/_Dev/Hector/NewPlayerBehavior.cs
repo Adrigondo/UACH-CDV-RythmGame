@@ -26,6 +26,7 @@ public class NewPlayerBehavior : MonoBehaviour
     [SerializeField] protected SceneChanger sceneChanger;
     [SerializeField] private float _movementSpeed = 5f;
     [SerializeField] private StartPosition _startPositionScript;
+    [SerializeField] protected ScoreManager scoreManager;
     protected float movementAngleInRadians = 0;
     protected float playerHeight;
     protected bool shouldMoveLeft = false;
@@ -101,6 +102,9 @@ public class NewPlayerBehavior : MonoBehaviour
             _isGravityInverted = true;
         if (startLevelMovingLeft)
             shouldMoveLeft = true;
+        
+        if (scoreManager == null)
+            Debug.LogError("No Score Manager found on Player");
 
         RespawnPlayer();
     }
@@ -307,7 +311,8 @@ public class NewPlayerBehavior : MonoBehaviour
 
     public void Death()
     {
-        // Debug.LogAssertion("Death");
+        RespawnCoins();
+        scoreManager.AddDeathToCounter();
         RespawnPlayer();
 
         if (_isGravityInverted)
@@ -338,9 +343,24 @@ public class NewPlayerBehavior : MonoBehaviour
         }
     }
 
+    private void RespawnCoins()
+    {
+        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>(true);
+
+        // Iterate through all objects and check their tag
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.CompareTag("Coin"))
+            {
+                obj.SetActive(true);
+            }
+        }
+    }
+
     protected void FinishLevel()
     {
-        sceneChanger.ChangeSceneWithCode("LevelsMenuV3");
+        scoreManager.AddUpFinalScore();
+        sceneChanger.ChangeSceneWithCode("EndGameScene");
     }
     #endregion
 }

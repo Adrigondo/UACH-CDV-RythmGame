@@ -728,7 +728,6 @@ MonoBehaviour:
   SceneChanger: {fileID: 653342570}
   ImageFill: {fileID: 691725759}
   SuccessTime: 1.5
-  levelsScriptableObject: {fileID: 11400000, guid: beeae3e97a118ce4797292bb2a5af6a4, type: 2}
 --- !u!1 &457028035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,7 +1093,6 @@ MonoBehaviour:
   SceneChanger: {fileID: 1458333007}
   ImageFill: {fileID: 691725759}
   SuccessTime: 1.5
-  levelsScriptableObject: {fileID: 11400000, guid: 598e338e32c369948904ea9d76b7500d, type: 2}
 --- !u!114 &647351762
 MonoBehaviour:
   m_ObjectHideFlags: 0

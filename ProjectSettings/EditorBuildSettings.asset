@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/_Dev/Leo/ScenesLeo/InventoryMenu.unity
     guid: 700c1f59338aaf540b8c654a7a0089b7
   - enabled: 1
+    path: Assets/_Dev/Hector/Levels/S_Level02.unity
+    guid: f1bdff382e72c174fa5e231c25abfd60
+  - enabled: 1
     path: Assets/_Dev/Leo/ScenesLeo/LevelsMenuV3.unity
     guid: 721aee65056e1a840aca9f7c263f37b8
   - enabled: 1
@@ -27,10 +30,10 @@ EditorBuildSettings:
     path: Assets/_Dev/Leo/ScenesLeo/Level2.unity
     guid: 01ec466afb986154e8110588d4ac8339
   - enabled: 1
-    path: Assets/_Dev/Hector/Levels/S_Level02.unity
+    path: Assets/_Dev/Hector/Levels/S_Level01.unity
     guid: a55cff6c529865e45997872043e97fc5
   - enabled: 1
-    path: Assets/_Dev/Hector/Levels/S_Level01.unity
-    guid: f1bdff382e72c174fa5e231c25abfd60
+    path: Assets/_Dev/Leo/ScenesLeo/EndGameScene.unity
+    guid: 161b0befb0606104494c896e99997ae6
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a93b28e53b387f747982f216a5755c2f, type: 2}
