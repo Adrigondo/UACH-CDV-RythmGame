@@ -82,6 +82,6 @@ public class ScoreManager : MonoBehaviour, IDataPersistance
         string sceneName = SceneManager.GetActiveScene().name;
         int levelIndex = int.Parse(sceneName.Substring(sceneName.Length - 2)) - 1;
 
-        data.LevelScore[levelIndex] = score;
+        data.LevelScore[levelIndex] = AddUpFinalScore();
     }
 }
