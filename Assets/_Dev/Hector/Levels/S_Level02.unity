@@ -1532,7 +1532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5be20341cd988142ae1486ca467ff99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PausePannel: {fileID: 0}
+  PausePannel: {fileID: 523809297}
   audioWaveforms: {fileID: 519782223}
   newPlayerBehavior: {fileID: 1289722176}
 --- !u!4 &469098268
@@ -3530,6 +3530,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb00330e875e424daf9be3f3f4d5704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &523809297 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8820622807864185466, guid: cff8e872521de5e47a5561df384d38bc, type: 3}
+  m_PrefabInstance: {fileID: 1128882961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &525039823 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3723333474806209451, guid: a7ff92d9250ecef4eba46982845d351a, type: 3}
