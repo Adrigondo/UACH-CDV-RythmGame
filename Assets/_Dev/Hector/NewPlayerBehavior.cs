@@ -34,7 +34,7 @@ public class NewPlayerBehavior : MonoBehaviour
     protected float buttonHeldDownTime;
     protected bool isButtonHeldDown;
     protected Collider2D playerCollider;
-    Stariluz.InputPlayer controls;
+    protected bool _mobileControlCanSlide = true;
     private bool _isGravityInverted = false;
     private bool _isGrounded;
     private Rigidbody2D _rigidBody2D;
@@ -169,7 +169,6 @@ public class NewPlayerBehavior : MonoBehaviour
     #endregion
 
     #region  "Public methods"
-    private bool canSlide = true;
     public void OnChangeGravity(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -179,18 +178,18 @@ public class NewPlayerBehavior : MonoBehaviour
             {
                 if (context.action.activeControl.name == "up")
                 {
-                    if (!IsGravityInverted && canSlide)
+                    if (!IsGravityInverted && _mobileControlCanSlide)
                     {
-                        canSlide = false;
+                        _mobileControlCanSlide = false;
                         CheckGravityChange();
                     }
 
                 }
                 else if (context.action.activeControl.name == "down")
                 {
-                    if (IsGravityInverted && canSlide)
+                    if (IsGravityInverted && _mobileControlCanSlide)
                     {
-                        canSlide = false;
+                        _mobileControlCanSlide = false;
                         CheckGravityChange();
 
                     }
@@ -216,7 +215,7 @@ public class NewPlayerBehavior : MonoBehaviour
     {
         if (context.performed)
         {
-            canSlide = true;
+            _mobileControlCanSlide = true;
         }
     }
 

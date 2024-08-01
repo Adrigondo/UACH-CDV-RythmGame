@@ -5367,6 +5367,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 18b458bb-26d3-4888-80e1-ea7b8f8a7a1e
     m_ActionName: Gameplay/Float[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1289722176}
+        m_TargetAssemblyTypeName: NewPlayerBehavior, Assembly-CSharp
+        m_MethodName: OnSlideEnd
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 28203892-f73f-445a-9eb1-6cf2d23c36e4
+    m_ActionName: Gameplay/SlideEnd[/Simulated Touchscreen/primaryTouch/press]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
