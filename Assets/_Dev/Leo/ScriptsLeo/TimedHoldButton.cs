@@ -15,8 +15,6 @@ public class TimedHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     [SerializeField]
     [Tooltip("The time the button must be hold pressed to complete the action.")]
     protected float SuccessTime;
-
-    [SerializeField]
     protected float CurrentHeldTime = 0f;
     
     protected bool IsClicked = false;
