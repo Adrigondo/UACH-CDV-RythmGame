@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class ScoreManager : MonoBehaviour, IDataPersistance
 {
     protected const int DEATHLESSBONUS = 1000;
+    [SerializeField] protected int coinValue = 10;
     protected int score;
     protected int deathCounter;
     protected int deathPenaltyFinalScore;
@@ -18,7 +19,7 @@ public class ScoreManager : MonoBehaviour, IDataPersistance
     {
         collectableScores = new Dictionary<string, int>
         {
-            { "Coin", 10 }
+            { "Coin", coinValue }
         };
     }
 
