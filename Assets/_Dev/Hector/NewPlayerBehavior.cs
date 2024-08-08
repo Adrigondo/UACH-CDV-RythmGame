@@ -310,6 +310,11 @@ public class NewPlayerBehavior : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
+    public void SetMovementSpeed(float moveSpeed)
+    {
+        _movementSpeed = moveSpeed;
+    }
+
     public void Death()
     {
         RespawnCoins();
