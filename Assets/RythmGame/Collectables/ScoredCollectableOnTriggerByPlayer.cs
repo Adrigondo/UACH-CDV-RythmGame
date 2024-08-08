@@ -19,14 +19,14 @@ namespace RythmGame
             }
         }
 
-        public ICollectableOnTrigger<float>.OnCollectEvent onCollectEvent = null;
+        public ICollectableOnTrigger<float>.OnCollectEvent OnCollectEvent;
 
-        public void OnTriggerEnter2D(Collider2D other)
+        public virtual void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.CompareTag("Player"))
             {
+                OnCollectEvent?.Invoke(ScoreValue);
                 Dissappear();
-                onCollectEvent?.Invoke(ScoreValue);
             }
         }
         public virtual void Dissappear()
