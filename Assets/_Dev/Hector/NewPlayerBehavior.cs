@@ -87,7 +87,7 @@ public class NewPlayerBehavior : MonoBehaviour
     #region "LifeCycle methods"
     protected void Start()
     {
-        Debug.Log(Screen.currentResolution);
+        // Debug.Log(Screen.currentResolution);
 
         playerCollider = GetComponent<Collider2D>();
         _rigidBody2D = GetComponent<Rigidbody2D>();
