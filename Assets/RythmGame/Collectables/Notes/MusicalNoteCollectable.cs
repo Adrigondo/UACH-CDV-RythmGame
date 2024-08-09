@@ -5,22 +5,27 @@ namespace RythmGame
 {
     public class MusicalNoteCollectable : ScoredCollectableOnTriggerByPlayer
     {
-        public delegate void OnCollectNote(MusicalOctaveNote octaveNote);
+        public delegate void OnCollectNote(MusicalOctave octave, MusicalNote note);
         public OnCollectNote OnCollectNoteEvent;
 
         [Tooltip("The musical note and octave that represents this gameobject")]
-        [SerializeField] protected MusicalOctaveNote OctaveNote;
+        [SerializeField] protected MusicalNote note;
+        protected MusicalOctave octave;
 
         public override void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                Debug.Log("COLLECTED");
-                OnCollectNoteEvent?.Invoke(OctaveNote);
+                OnCollectNoteEvent?.Invoke(octave, note);
                 OnCollectEvent?.Invoke(ScoreValue);
                 Dissappear();
             }
         }
+        public void SetOctave(MusicalOctave octave)
+        {
+            this.octave = octave;
+        }
+
 
         // [SerializeField] AudioSource audioSource;
         // override void Dissappear(){

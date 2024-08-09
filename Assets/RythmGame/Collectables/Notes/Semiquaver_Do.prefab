@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1534304297249566112, guid: 111c3d1e73ffd124ebd333bc57e2b036, type: 3}
+      propertyPath: OctaveNote.Octave
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2631773271164755874, guid: 111c3d1e73ffd124ebd333bc57e2b036, type: 3}
       propertyPath: m_Color.a
       value: 1

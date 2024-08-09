@@ -15,6 +15,7 @@ namespace RythmGame
         protected SerializedDictionary<float, MusicalOctaveNote> HeightToNote;
 
         [SerializeField] protected GameObject NotesPlaceholdersContainer;
+        [SerializeField] protected GameObject TestPlaceholder;
 
 
         protected AudioSource AudioSource;
@@ -26,35 +27,62 @@ namespace RythmGame
 
             if (NotesPlaceholdersContainer != null)
             {
-                foreach (Transform child in NotesPlaceholdersContainer.transform)
+                Transform[] children=NotesPlaceholdersContainer.GetComponentsInChildren<Transform>();
+                int lenght=children.Length;
+                for (int i=1; i<lenght; i++)
                 {
-                    MusicalOctaveNote note = HeightToNote[child.position.y];
-
+                    MusicalOctaveNote octaveNote = HeightToNote[children[i].position.y];
+                    
                     GameObject noteGameObject = Instantiate(
-                        Octaves[note.Octave].Notes[note.Note].Prefab,
-                        child.position,
-                        child.rotation,
+                        Octaves[octaveNote.Octave].Notes[octaveNote.Note].Prefab,
+                        children[i].position,
+                        children[i].rotation,
                         NotesPlaceholdersContainer.transform
                     );
-                    // Debug.Log((note, noteGameObject));
-                    // Debug.Log(child, noteGameObject);
-                    Destroy(child.gameObject);
+                    Destroy(children[i].gameObject);
 
                     MusicalNoteCollectable collectable = noteGameObject.GetComponent<MusicalNoteCollectable>();
+                    collectable.SetOctave(octaveNote.Octave);
                     collectable.OnCollectNoteEvent += HandleCollectNote;
-
                 }
             }
             else
             {
-                Debug.LogWarning("GameObject '@Placeholders' not found in the scene.");
+                Debug.LogWarning("NotesPlaceholdersContainer not found in the scene.");
             }
+
+            // if (TestPlaceholder != null)
+            // {
+            //     MusicalOctaveNote octaveNote = HeightToNote[TestPlaceholder.transform.position.y];
+            //     // Debug.Log($"Octaves: {Octaves}");
+            //     // Debug.Log($"Octaves[note.Octave]: {Octaves[note.Octave]}");
+            //     // Debug.Log($"Octaves[note.Octave].Notes: {Octaves[note.Octave].Notes}");
+            //     // Debug.Log($"Octaves[note.Octave].Notes[note.Note]: {Octaves[note.Octave].Notes[note.Note]}");
+            //     // Debug.Log($"Prefab: {Octaves[note.Octave].Notes[note.Note].Prefab}");
+            //     // Debug.Log($"Position: {child.position}");
+            //     // Debug.Log($"Rotation: {child.rotation}");
+            //     // Debug.Log($"Parent: {NotesPlaceholdersContainer.transform}");
+            //     GameObject noteGameObject = Instantiate(
+            //         Octaves[octaveNote.Octave].Notes[octaveNote.Note].Prefab,
+            //         TestPlaceholder.transform.position,
+            //         TestPlaceholder.transform.rotation,
+            //         NotesPlaceholdersContainer.transform
+            //     );
+
+            //     Destroy(TestPlaceholder);
+            //     MusicalNoteCollectable collectable = noteGameObject.GetComponent<MusicalNoteCollectable>();
+            //     collectable.SetOctave(octaveNote.Octave);
+            //     collectable.OnCollectNoteEvent += HandleCollectNote;
+            // }
+            // else
+            // {
+            //     Debug.LogWarning("TestPlaceholder not found in the scene.");
+            // }
         }
 
-        protected void HandleCollectNote(MusicalOctaveNote octaveNote)
+        protected void HandleCollectNote(MusicalOctave octave, MusicalNote note)
         {
-            Debug.Log(octaveNote);
-            AudioSource.clip = Octaves[octaveNote.Octave].Notes[octaveNote.Note].Instruments[CurrentInstrument].AudioClip;
+            AudioSource.clip = Octaves[octave].Notes[note].Instruments[CurrentInstrument].AudioClip;
             AudioSource.Play();
         }
     }

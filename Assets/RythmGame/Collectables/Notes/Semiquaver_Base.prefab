@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6318175483175514671}
   - component: {fileID: -6072278657784390728}
   - component: {fileID: 8552008085221994472}
-  - component: {fileID: 2435708316790204449}
+  - component: {fileID: 1534304297249566112}
   m_Layer: 0
   m_Name: Semiquaver_Base
   m_TagString: NotePlaceholder
@@ -256,7 +256,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.71172136, y: 0.62492836}
   m_EdgeRadius: 0
---- !u!114 &2435708316790204449
+--- !u!114 &1534304297249566112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,6 +265,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 9015696499212676278}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e734afdb0c27a748830e40c778e7666, type: 3}
+  m_Script: {fileID: 11500000, guid: b3c0376789ca6bb49b12bd351705abb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OctaveNote:
+    Octave: 0
+    Note: 0
