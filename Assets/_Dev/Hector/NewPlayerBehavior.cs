@@ -23,13 +23,13 @@ public class NewPlayerBehavior : MonoBehaviour
     [SerializeField] protected float movementAngleInDegrees = 0;
     [SerializeField] protected CameraBehavior cameraBehavior;
     [SerializeField] protected AudioSource audioSource;
-    [SerializeField] protected SceneChanger sceneChanger;
+    [SerializeField][Tooltip("Here goes a Game Object that has a Scene Changer script in it")] protected SceneChanger sceneChanger;
     [SerializeField] private float _movementSpeed = 5f;
     [SerializeField] private StartPosition _startPositionScript;
     [SerializeField] protected ScoreManager scoreManager;
-    [SerializeField] protected LevelsScriptableObject levelsScriptableObject;
-    [SerializeField] protected ScriptableObjectRecieve scriptableObjectRecieve;
-    [SerializeField] protected GameObject endgamePannel;
+    [SerializeField][Tooltip("Here goes the ScriptableObject of the level")]protected LevelsScriptableObject levelsScriptableObject;
+    [SerializeField][Tooltip("Here goes a GameObject that has a ScriptableObjectRecieve script in it")] protected ScriptableObjectRecieve scriptableObjectRecieve;
+    [SerializeField][Tooltip("The End Game Pannel")] protected GameObject endgamePannel;
     protected float movementAngleInRadians = 0;
     protected float playerHeight;
     protected bool shouldMoveLeft = false;
@@ -91,7 +91,6 @@ public class NewPlayerBehavior : MonoBehaviour
     protected void Start()
     {
         // Debug.Log(Screen.currentResolution);
-        scriptableObjectRecieve.Recieve(levelsScriptableObject);
         endgamePannel.SetActive(false);
 
         playerCollider = GetComponent<Collider2D>();
@@ -371,6 +370,7 @@ public class NewPlayerBehavior : MonoBehaviour
     protected void FinishLevel()
     {
         scoreManager.AddUpFinalScore();
+        scriptableObjectRecieve.Recieve(levelsScriptableObject, scoreManager.score, scoreManager.deathCounter);
         endgamePannel.SetActive(true);
         Time.timeScale = 0f;
     }

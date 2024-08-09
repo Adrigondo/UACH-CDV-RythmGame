@@ -9,8 +9,8 @@ public class ScoreManager : MonoBehaviour, IDataPersistance
 {
     protected const int DEATHLESSBONUS = 1000;
     [SerializeField] protected int coinValue = 10;
-    protected int score;
-    protected int deathCounter;
+    public int score;
+    public int deathCounter;
     protected int deathPenaltyFinalScore;
     private Dictionary<string, int> collectableScores;
     [SerializeField] protected TMP_Text scoreLabel;
@@ -70,7 +70,7 @@ public class ScoreManager : MonoBehaviour, IDataPersistance
 
     protected void SetScoreLabel()
     {
-        scoreLabel.text = "" + score;
+        scoreLabel.text = score.ToString();
     }
 
     public void LoadData(GameData data)
