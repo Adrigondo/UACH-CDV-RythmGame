@@ -27,6 +27,9 @@ public class NewPlayerBehavior : MonoBehaviour
     [SerializeField] private float _movementSpeed = 5f;
     [SerializeField] private StartPosition _startPositionScript;
     [SerializeField] protected ScoreManager scoreManager;
+    [SerializeField] protected LevelsScriptableObject levelsScriptableObject;
+    [SerializeField] protected ScriptableObjectRecieve scriptableObjectRecieve;
+    [SerializeField] protected GameObject endgamePannel;
     protected float movementAngleInRadians = 0;
     protected float playerHeight;
     protected bool shouldMoveLeft = false;
@@ -88,6 +91,8 @@ public class NewPlayerBehavior : MonoBehaviour
     protected void Start()
     {
         // Debug.Log(Screen.currentResolution);
+        scriptableObjectRecieve.Recieve(levelsScriptableObject);
+        endgamePannel.SetActive(false);
 
         playerCollider = GetComponent<Collider2D>();
         _rigidBody2D = GetComponent<Rigidbody2D>();
@@ -366,7 +371,8 @@ public class NewPlayerBehavior : MonoBehaviour
     protected void FinishLevel()
     {
         scoreManager.AddUpFinalScore();
-        sceneChanger.ChangeSceneWithCode("EndGameScene");
+        endgamePannel.SetActive(true);
+        Time.timeScale = 0f;
     }
     #endregion
 }

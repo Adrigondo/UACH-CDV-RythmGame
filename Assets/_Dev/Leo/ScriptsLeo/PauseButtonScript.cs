@@ -24,9 +24,9 @@ public class PauseButtonScrip : MonoBehaviour
     }
     public void ResumeGame()
     {
+        Time.timeScale = 1f;
         PausePannel.SetActive(false);
         audioWaveforms.audioSource.Play();
-        Time.timeScale = 1f;
     }
     public void RestartGame()
     {
