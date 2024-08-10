@@ -34,9 +34,12 @@ public class ScoreManager : MonoBehaviour, IDataPersistance
 
     public void ReceiveCollectableTag(string collectableTag)
     {
-        coinCuantity ++;
         score += collectableScores[collectableTag];
         SetScoreLabel();
+    }
+    public void AddCoinCounter()
+    {
+        coinCuantity ++;
     }
 
     public int AddUpFinalScore()
@@ -50,6 +53,7 @@ public class ScoreManager : MonoBehaviour, IDataPersistance
     public void AddDeathToCounter()
     {
         deathCounter++;
+        coinCuantity = 0;
         RestartScore();
     }
 
