@@ -17941,6 +17941,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 10
+  score: 0
+  deathCounter: 0
   scoreLabel: {fileID: 893659233}
 --- !u!4 &1531961798
 Transform:
