@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System.Runtime.CompilerServices;
 using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour, IDataPersistance
@@ -11,6 +9,7 @@ public class ScoreManager : MonoBehaviour, IDataPersistance
     [SerializeField] protected int coinValue = 10;
     public int score;
     public int deathCounter;
+    public int coinCuantity;
     protected int deathPenaltyFinalScore;
     private Dictionary<string, int> collectableScores;
     [SerializeField] protected TMP_Text scoreLabel;
@@ -25,6 +24,7 @@ public class ScoreManager : MonoBehaviour, IDataPersistance
 
     void Start()
     {
+        coinCuantity = 0;
         if (scoreLabel == null)
             Debug.LogError("No Score Label found on Score Manager");
 
@@ -34,6 +34,7 @@ public class ScoreManager : MonoBehaviour, IDataPersistance
 
     public void ReceiveCollectableTag(string collectableTag)
     {
+        coinCuantity ++;
         score += collectableScores[collectableTag];
         SetScoreLabel();
     }

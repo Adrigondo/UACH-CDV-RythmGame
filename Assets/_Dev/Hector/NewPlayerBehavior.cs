@@ -370,7 +370,7 @@ public class NewPlayerBehavior : MonoBehaviour
     protected void FinishLevel()
     {
         scoreManager.AddUpFinalScore();
-        scriptableObjectRecieve.Recieve(levelsScriptableObject, scoreManager.score, scoreManager.deathCounter);
+        scriptableObjectRecieve.Recieve(levelsScriptableObject, scoreManager.score, scoreManager.deathCounter, scoreManager.coinCuantity);
         endgamePannel.SetActive(true);
         Time.timeScale = 0f;
     }
