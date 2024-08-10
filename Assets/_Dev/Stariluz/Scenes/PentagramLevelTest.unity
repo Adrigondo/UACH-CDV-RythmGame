@@ -16260,19 +16260,19 @@ PrefabInstance:
       objectReference: {fileID: 1799195151}
     - target: {fileID: 329013661283631793, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1140266022662126661, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.6769677
       objectReference: {fileID: 0}
     - target: {fileID: 1140266022662126661, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1140266022662126661, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.6769677
       objectReference: {fileID: 0}
     - target: {fileID: 2315515272955144131, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -16280,15 +16280,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3253540460135924117, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.6769677
       objectReference: {fileID: 0}
     - target: {fileID: 3253540460135924117, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3253540460135924117, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.6769677
       objectReference: {fileID: 0}
     - target: {fileID: 3703826916979094454, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: audioWaveforms
@@ -16394,6 +16394,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PauseGame
       objectReference: {fileID: 0}
+    - target: {fileID: 6438888319234079450, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6663520149189778252, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -16410,21 +16414,37 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: ChangeScene
       objectReference: {fileID: 0}
+    - target: {fileID: 6947458286153822401, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947458286153822401, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947458286153822401, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947458286153822401, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
     - target: {fileID: 7139930590598249173, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.6769677
       objectReference: {fileID: 0}
     - target: {fileID: 7139930590598249173, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8955921975572590448, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.6769677
       objectReference: {fileID: 0}
     - target: {fileID: 8955921975572590448, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8962705227720013199, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: m_Name
