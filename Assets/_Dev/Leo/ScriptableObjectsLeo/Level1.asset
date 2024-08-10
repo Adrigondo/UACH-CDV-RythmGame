@@ -15,7 +15,7 @@ MonoBehaviour:
   levelName: TheVoid
   levelNumber: 1
   musicLevel: {fileID: 0}
-  maximumscore: 10000
+  maximumscore: 450
   levelImages:
   - {fileID: 21300000, guid: edfc3b9a80cb2214cbac983887eb25c0, type: 3}
   - {fileID: 21300000, guid: 638fd2d373ac9fd45a3fe79ce5e37495, type: 3}
