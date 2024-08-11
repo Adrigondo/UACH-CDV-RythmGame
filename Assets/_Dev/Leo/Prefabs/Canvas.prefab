@@ -166,7 +166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6198936912334573538
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4870,5 +4870,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myMixer: {fileID: 24100000, guid: 2c45213fdf4936a45999f204ecfe089c, type: 2}
-  MusicSlider: {fileID: 0}
-  SFXSlider: {fileID: 0}
+  MusicSlider: {fileID: 5139916528443039643}
+  SFXSlider: {fileID: 984348474846213241}
