@@ -28,6 +28,7 @@ public class NewPlayerBehavior : MonoBehaviour
     [SerializeField] private StartPosition _startPositionScript;
     [SerializeField] protected ScoreManager scoreManager;
     [SerializeField][Tooltip("Here goes the ScriptableObject of the level")]protected LevelsScriptableObject levelsScriptableObject;
+    [SerializeField][Tooltip("Here goes the ScriptableObject of the next level")]protected LevelsScriptableObject nextlevelScriptableObject;
     [SerializeField][Tooltip("Here goes a GameObject that has a ScriptableObjectRecieve script in it")] protected ScriptableObjectRecieve scriptableObjectRecieve;
     [SerializeField][Tooltip("The End Game Pannel")] protected GameObject endgamePannel;
     protected float movementAngleInRadians = 0;
@@ -370,7 +371,7 @@ public class NewPlayerBehavior : MonoBehaviour
     protected void FinishLevel()
     {
         scoreManager.AddUpFinalScore();
-        scriptableObjectRecieve.Recieve(levelsScriptableObject, scoreManager.score, scoreManager.deathCounter, scoreManager.coinCuantity);
+        scriptableObjectRecieve.Recieve(levelsScriptableObject, nextlevelScriptableObject, scoreManager.score, scoreManager.deathCounter, scoreManager.coinCuantity);
         endgamePannel.SetActive(true);
         Time.timeScale = 0f;
     }

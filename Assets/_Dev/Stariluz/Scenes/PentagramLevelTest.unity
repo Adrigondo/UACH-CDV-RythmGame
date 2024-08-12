@@ -17573,6 +17573,10 @@ PrefabInstance:
       propertyPath: scriptableObjectRecieve
       value: 
       objectReference: {fileID: 880039649}
+    - target: {fileID: 5356459017475778520, guid: 5e2678d2f2e4c61489a8891535466513, type: 3}
+      propertyPath: nextlevelScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: beeae3e97a118ce4797292bb2a5af6a4, type: 2}
     - target: {fileID: 5501358040140487846, guid: 5e2678d2f2e4c61489a8891535466513, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
