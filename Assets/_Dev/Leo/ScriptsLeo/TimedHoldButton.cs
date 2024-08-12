@@ -4,19 +4,12 @@ using UnityEngine.EventSystems;
 
 public class TimedHoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField]
-    [Tooltip("SceneChanger gameobject of the current scene.")]
-    protected GameObject SceneChanger;
+    [SerializeField][Tooltip("SceneChanger gameobject of the current scene.")] protected GameObject SceneChanger;
 
-    [SerializeField]
-    [Tooltip("Image to show for the button.")]
-    protected Image ImageFill;
+    [SerializeField][Tooltip("Image to show for the button.")] protected Image ImageFill;
 
-    [SerializeField]
-    [Tooltip("The time the button must be hold pressed to complete the action.")]
-    protected float SuccessTime;
+    [SerializeField][Tooltip("The time the button must be hold pressed to complete the action.")] protected float SuccessTime;
     protected float CurrentHeldTime = 0f;
-    
     protected bool IsClicked = false;
 
 
