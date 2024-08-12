@@ -16924,402 +16924,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1687719237477033742, guid: 4caf6618005a2694aacc011e2ecc46c2, type: 3}
   m_PrefabInstance: {fileID: 1144720907}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1145771341
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1145771342}
-  - component: {fileID: 1145771344}
-  - component: {fileID: 1145771343}
-  m_Layer: 0
-  m_Name: MusicalNotesManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1145771342
+--- !u!4 &1145771342 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4585070451604682814, guid: 14840d157f48a454a9855f2e283d255e, type: 3}
+  m_PrefabInstance: {fileID: 719563645461111657}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145771341}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 51130546}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1145771343
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145771341}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -8959931559063578473, guid: 2c45213fdf4936a45999f204ecfe089c, type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &1145771344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145771341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60537394c37d41442a22e32136c0dc32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentInstrument: 1
-  Octaves:
-    _serializedList:
-    - Key: 4
-      Value:
-        Notes:
-          _serializedList:
-          - Key: 0
-            Value:
-              Instruments:
-                _serializedList:
-                - Key: 0
-                  Value:
-                    AudioClip: {fileID: 0}
-                - Key: 1
-                  Value:
-                    AudioClip: {fileID: 8300000, guid: 87a6eb2e1c9a7004c829d13aa74e6c29, type: 3}
-                - Key: 2
-                  Value:
-                    AudioClip: {fileID: 0}
-              Prefab: {fileID: 194050784971397051, guid: 7b30319edd154254cbb2806f71db6f72, type: 3}
-          - Key: 1
-            Value:
-              Instruments:
-                _serializedList:
-                - Key: 0
-                  Value:
-                    AudioClip: {fileID: 0}
-                - Key: 1
-                  Value:
-                    AudioClip: {fileID: 8300000, guid: 2d5726c7d9f3c0849bfa2ceab75d3e22, type: 3}
-                - Key: 2
-                  Value:
-                    AudioClip: {fileID: 0}
-              Prefab: {fileID: 194050784971397051, guid: fc2f79da2667ecf469cafc337ce45e3b, type: 3}
-          - Key: 2
-            Value:
-              Instruments:
-                _serializedList:
-                - Key: 0
-                  Value:
-                    AudioClip: {fileID: 0}
-                - Key: 1
-                  Value:
-                    AudioClip: {fileID: 8300000, guid: 23a4e3081cf00af47a0ad9737adbdba0, type: 3}
-                - Key: 2
-                  Value:
-                    AudioClip: {fileID: 0}
-              Prefab: {fileID: 194050784971397051, guid: d972e713bc5408b4086cfcb079c19ae7, type: 3}
-          - Key: 3
-            Value:
-              Instruments:
-                _serializedList:
-                - Key: 0
-                  Value:
-                    AudioClip: {fileID: 0}
-                - Key: 1
-                  Value:
-                    AudioClip: {fileID: 8300000, guid: c5e9cd2160349af4493408dc2e73842f, type: 3}
-                - Key: 2
-                  Value:
-                    AudioClip: {fileID: 0}
-              Prefab: {fileID: 194050784971397051, guid: 7170df3cd587a9741aa6dd24fad96ba7, type: 3}
-          - Key: 4
-            Value:
-              Instruments:
-                _serializedList:
-                - Key: 0
-                  Value:
-                    AudioClip: {fileID: 0}
-                - Key: 1
-                  Value:
-                    AudioClip: {fileID: 8300000, guid: a49d2bacb07da654cb4984830b686130, type: 3}
-                - Key: 2
-                  Value:
-                    AudioClip: {fileID: 0}
-              Prefab: {fileID: 194050784971397051, guid: e1b1fd31f57d1bb448aacb55e72f828d, type: 3}
-          - Key: 5
-            Value:
-              Instruments:
-                _serializedList:
-                - Key: 0
-                  Value:
-                    AudioClip: {fileID: 0}
-                - Key: 1
-                  Value:
-                    AudioClip: {fileID: 8300000, guid: 07d055a28226d3e45881d7de8d644ca7, type: 3}
-                - Key: 2
-                  Value:
-                    AudioClip: {fileID: 0}
-              Prefab: {fileID: 194050784971397051, guid: c566a9a507d04d84d8688c7550eadac2, type: 3}
-          - Key: 6
-            Value:
-              Instruments:
-                _serializedList:
-                - Key: 0
-                  Value:
-                    AudioClip: {fileID: 0}
-                - Key: 1
-                  Value:
-                    AudioClip: {fileID: 8300000, guid: 94081b398289c26419036690850a24a5, type: 3}
-                - Key: 2
-                  Value:
-                    AudioClip: {fileID: 0}
-              Prefab: {fileID: 194050784971397051, guid: d4f05ace77532554d923f3d0947b8859, type: 3}
-    - Key: 5
-      Value:
-        Notes:
-          _serializedList:
-          - Key: 0
-            Value:
-              Instruments:
-                _serializedList:
-                - Key: 0
-                  Value:
-                    AudioClip: {fileID: 0}
-                - Key: 1
-                  Value:
-                    AudioClip: {fileID: 8300000, guid: ea3a99e9f1636c6498b44de89871b94d, type: 3}
-                - Key: 2
-                  Value:
-                    AudioClip: {fileID: 0}
-              Prefab: {fileID: 194050784971397051, guid: 7b30319edd154254cbb2806f71db6f72, type: 3}
-          - Key: 1
-            Value:
-              Instruments:
-                _serializedList:
-                - Key: 0
-                  Value:
-                    AudioClip: {fileID: 0}
-                - Key: 1
-                  Value:
-                    AudioClip: {fileID: 8300000, guid: b67c7bdd73efdf344ba737faf8e3fd6c, type: 3}
-                - Key: 2
-                  Value:
-                    AudioClip: {fileID: 0}
-              Prefab: {fileID: 194050784971397051, guid: fc2f79da2667ecf469cafc337ce45e3b, type: 3}
-          - Key: 2
-            Value:
-              Instruments:
-                _serializedList:
-                - Key: 0
-                  Value:
-                    AudioClip: {fileID: 0}
-                - Key: 1
-                  Value:
-                    AudioClip: {fileID: 8300000, guid: 43ec87cc5af8d2947b3c2c9924fb215f, type: 3}
-                - Key: 2
-                  Value:
-                    AudioClip: {fileID: 0}
-              Prefab: {fileID: 194050784971397051, guid: d972e713bc5408b4086cfcb079c19ae7, type: 3}
-          - Key: 3
-            Value:
-              Instruments:
-                _serializedList:
-                - Key: 0
-                  Value:
-                    AudioClip: {fileID: 0}
-                - Key: 1
-                  Value:
-                    AudioClip: {fileID: 8300000, guid: bf7d61f861f3414488ecfbd02975946a, type: 3}
-                - Key: 2
-                  Value:
-                    AudioClip: {fileID: 0}
-              Prefab: {fileID: 194050784971397051, guid: 7170df3cd587a9741aa6dd24fad96ba7, type: 3}
-          - Key: 4
-            Value:
-              Instruments:
-                _serializedList:
-                - Key: 0
-                  Value:
-                    AudioClip: {fileID: 0}
-                - Key: 1
-                  Value:
-                    AudioClip: {fileID: 8300000, guid: 3d3ad067e7a363649aad9b0d39f3b069, type: 3}
-                - Key: 2
-                  Value:
-                    AudioClip: {fileID: 0}
-              Prefab: {fileID: 194050784971397051, guid: e1b1fd31f57d1bb448aacb55e72f828d, type: 3}
-          - Key: 5
-            Value:
-              Instruments:
-                _serializedList:
-                - Key: 0
-                  Value:
-                    AudioClip: {fileID: 0}
-                - Key: 1
-                  Value:
-                    AudioClip: {fileID: 8300000, guid: 6543d2bf9c43eaf4b9bf019321226fae, type: 3}
-                - Key: 2
-                  Value:
-                    AudioClip: {fileID: 0}
-              Prefab: {fileID: 194050784971397051, guid: c566a9a507d04d84d8688c7550eadac2, type: 3}
-          - Key: 6
-            Value:
-              Instruments:
-                _serializedList:
-                - Key: 0
-                  Value:
-                    AudioClip: {fileID: 0}
-                - Key: 1
-                  Value:
-                    AudioClip: {fileID: 8300000, guid: b79be8c4338340e4d86698f00d520dbe, type: 3}
-                - Key: 2
-                  Value:
-                    AudioClip: {fileID: 0}
-              Prefab: {fileID: 194050784971397051, guid: d4f05ace77532554d923f3d0947b8859, type: 3}
-  HeightToNote:
-    _serializedList:
-    - Key: -3.75
-      Value:
-        Octave: 4
-        Note: 1
-    - Key: -3
-      Value:
-        Octave: 4
-        Note: 2
-    - Key: -2.25
-      Value:
-        Octave: 4
-        Note: 3
-    - Key: -1.5
-      Value:
-        Octave: 4
-        Note: 4
-    - Key: -0.75
-      Value:
-        Octave: 4
-        Note: 5
-    - Key: 0
-      Value:
-        Octave: 4
-        Note: 6
-    - Key: 0.75
-      Value:
-        Octave: 5
-        Note: 0
-    - Key: 1.5
-      Value:
-        Octave: 5
-        Note: 1
-    - Key: 2.25
-      Value:
-        Octave: 5
-        Note: 2
-    - Key: 3
-      Value:
-        Octave: 5
-        Note: 3
-    - Key: 3.75
-      Value:
-        Octave: 5
-        Note: 4
-  NotesPlaceholdersContainer: {fileID: 1543708061}
-  TestPlaceholder: {fileID: 0}
 --- !u!1001 &1162461809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25198,6 +24807,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1687719237477033742, guid: 4caf6618005a2694aacc011e2ecc46c2, type: 3}
   m_PrefabInstance: {fileID: 2099164827}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &719563645461111657
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 51130546}
+    m_Modifications:
+    - target: {fileID: 632120626488625740, guid: 14840d157f48a454a9855f2e283d255e, type: 3}
+      propertyPath: m_Name
+      value: MusicalNotesManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585070451604682814, guid: 14840d157f48a454a9855f2e283d255e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585070451604682814, guid: 14840d157f48a454a9855f2e283d255e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585070451604682814, guid: 14840d157f48a454a9855f2e283d255e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585070451604682814, guid: 14840d157f48a454a9855f2e283d255e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585070451604682814, guid: 14840d157f48a454a9855f2e283d255e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585070451604682814, guid: 14840d157f48a454a9855f2e283d255e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585070451604682814, guid: 14840d157f48a454a9855f2e283d255e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585070451604682814, guid: 14840d157f48a454a9855f2e283d255e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585070451604682814, guid: 14840d157f48a454a9855f2e283d255e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585070451604682814, guid: 14840d157f48a454a9855f2e283d255e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312673928330047720, guid: 14840d157f48a454a9855f2e283d255e, type: 3}
+      propertyPath: NotesPlaceholdersContainer
+      value: 
+      objectReference: {fileID: 1543708061}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 14840d157f48a454a9855f2e283d255e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
