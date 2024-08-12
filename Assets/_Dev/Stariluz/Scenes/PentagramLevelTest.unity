@@ -16258,9 +16258,17 @@ PrefabInstance:
       propertyPath: newPlayerBehavior
       value: 
       objectReference: {fileID: 1799195151}
+    - target: {fileID: 257360502268289849, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.0000305
+      objectReference: {fileID: 0}
     - target: {fileID: 329013661283631793, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1253130394127432212, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3253540460135924117, guid: 77aa06b63bef92c4ba48cfa3622d89ff, type: 3}
       propertyPath: m_AnchorMax.x
