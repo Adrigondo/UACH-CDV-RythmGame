@@ -40,7 +40,7 @@ public class ScriptableObjectRecieve : MonoBehaviour
             ManyDieds.text = "YOU HAVE DIED: " + deathCounter.ToString() + " TIMES";
         }
         porcent = score*100 / levelsScriptableObject.MaximumScore;
-        PorcOfTheLevel.text = porcent.ToString() + "%";
+        PorcOfTheLevel.text = porcent.ToString("F0") + "%";
         if (porcent == 100)
         {
             LevelLetter.text = "S";
