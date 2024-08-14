@@ -4,7 +4,7 @@ namespace RythmGame
 {
     public class ScoredCollectableOnTriggerByPlayer : MonoBehaviour, ICollectableOnTrigger<float>
     {
-        [SerializeField] protected ScoreManager scoreManager;
+        // [SerializeField] protected ScoreManager scoreManager;
         private float _scoreValue;
 
         [SerializeField]
@@ -26,8 +26,8 @@ namespace RythmGame
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                scoreManager.AddCoinCounter();
-                scoreManager.ReceiveCollectableTag(gameObject.tag);
+                // scoreManager.AddCoinCounter();
+                // scoreManager.ReceiveCollectableTag(gameObject.tag);
                 OnCollectEvent?.Invoke(ScoreValue);
                 Dissappear();
             }

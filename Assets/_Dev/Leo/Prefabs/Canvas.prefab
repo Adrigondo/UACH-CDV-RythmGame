@@ -1990,7 +1990,7 @@ MonoBehaviour:
   counterText: {fileID: 6407726928454387848}
   pauseButtonScrip: {fileID: 126113709766214396}
   WhiteCircle: {fileID: 4516663193859991945}
-  WaitTime: 5
+  WaitTime: 1.5
 --- !u!1 &4058412386098804658
 GameObject:
   m_ObjectHideFlags: 0

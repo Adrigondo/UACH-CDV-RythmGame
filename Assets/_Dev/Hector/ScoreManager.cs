@@ -14,14 +14,6 @@ public class ScoreManager : MonoBehaviour, IDataPersistance
     private Dictionary<string, int> collectableScores;
     [SerializeField] protected TMP_Text scoreLabel;
 
-    void Awake()
-    {
-        collectableScores = new Dictionary<string, int>
-        {
-            { "Coin", coinValue }
-        };
-    }
-
     void Start()
     {
         coinCuantity = 0;
@@ -32,14 +24,11 @@ public class ScoreManager : MonoBehaviour, IDataPersistance
         RestartDeathCounter();
     }
 
-    public void ReceiveCollectableTag(string collectableTag)
-    {
-        score += collectableScores[collectableTag];
-        SetScoreLabel();
-    }
     public void AddCoinCounter()
     {
         coinCuantity ++;
+        score+=coinValue;
+        SetScoreLabel(score);
     }
 
     public int AddUpFinalScore()
@@ -65,7 +54,7 @@ public class ScoreManager : MonoBehaviour, IDataPersistance
     protected void RestartScore()
     {
         score = 0;
-        SetScoreLabel();
+        SetScoreLabel(score);
     }
 
     protected void RestartDeathCounter()
@@ -73,7 +62,7 @@ public class ScoreManager : MonoBehaviour, IDataPersistance
         deathCounter = 0;
     }
 
-    protected void SetScoreLabel()
+    protected void SetScoreLabel(int score)
     {
         scoreLabel.text = score.ToString();
     }

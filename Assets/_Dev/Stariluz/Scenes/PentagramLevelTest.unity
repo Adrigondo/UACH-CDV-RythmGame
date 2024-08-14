@@ -24872,6 +24872,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6312673928330047720, guid: 14840d157f48a454a9855f2e283d255e, type: 3}
+      propertyPath: scoreManager
+      value: 
+      objectReference: {fileID: 1531961797}
+    - target: {fileID: 6312673928330047720, guid: 14840d157f48a454a9855f2e283d255e, type: 3}
       propertyPath: NotesPlaceholdersContainer
       value: 
       objectReference: {fileID: 1543708061}
