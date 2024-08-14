@@ -1,11 +1,11 @@
-
 using UnityEngine;
 
 namespace RythmGame
 {
     public class MusicalNoteCollectable : ScoredCollectableOnTriggerByPlayer
     {
-        public delegate void OnCollectNote(MusicalOctave octave, MusicalNote note);
+        [SerializeField][Tooltip("The ScriptableObject for the note")] protected NotesScriptableObject notesScriptableObject;
+        public delegate void OnCollectNote(MusicalOctave octave, MusicalNote note, int noteValue);
         public OnCollectNote OnCollectNoteEvent;
 
         [Tooltip("The musical note and octave that represents this gameobject")]
@@ -16,7 +16,7 @@ namespace RythmGame
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                OnCollectNoteEvent?.Invoke(octave, note);
+                OnCollectNoteEvent?.Invoke(octave, note, notesScriptableObject.NoteValue);
                 OnCollectEvent?.Invoke(ScoreValue);
                 Dissappear();
             }

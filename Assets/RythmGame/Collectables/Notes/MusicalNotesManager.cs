@@ -55,9 +55,10 @@ namespace RythmGame
             }
         }
 
-        protected void HandleCollectNote(MusicalOctave octave, MusicalNote note)
+        protected void HandleCollectNote(MusicalOctave octave, MusicalNote note, int noteValue)
         {
             scoreManager.AddCoinCounter();
+            scoreManager.UpdateScore(noteValue);
             AudioSource.clip = Octaves[octave].Notes[note].Instruments[CurrentInstrument].AudioClip;
             AudioSource.Play();
         }
