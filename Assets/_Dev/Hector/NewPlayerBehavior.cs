@@ -87,7 +87,10 @@ public class NewPlayerBehavior : MonoBehaviour
         // }
     }
     #endregion
-
+    #region "Events"
+    public delegate void OnDeath();
+    public OnDeath OnDeathEvent;
+    #endregion
     #region "LifeCycle methods"
     protected void Start()
     {
@@ -327,6 +330,7 @@ public class NewPlayerBehavior : MonoBehaviour
 
     public void Death()
     {
+        OnDeathEvent?.Invoke();
         RespawnCoins();
         scoreManager.AddDeathToCounter();
         RespawnPlayer();

@@ -18,7 +18,6 @@ namespace RythmGame
             {
                 OnCollectNoteEvent?.Invoke(octave, note);
                 OnCollectEvent?.Invoke(ScoreValue);
-                // scoreManager.AddCoinCounter();
                 Dissappear();
             }
         }
@@ -26,11 +25,5 @@ namespace RythmGame
         {
             this.octave = octave;
         }
-
-
-        // [SerializeField] AudioSource audioSource;
-        // override void Dissappear(){
-
-        // }
     }
 }

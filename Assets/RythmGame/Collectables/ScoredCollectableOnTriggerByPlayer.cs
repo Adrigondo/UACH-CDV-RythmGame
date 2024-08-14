@@ -32,9 +32,14 @@ namespace RythmGame
                 Dissappear();
             }
         }
+
         public virtual void Dissappear()
         {
             gameObject.SetActive(false);
+        }
+
+        public virtual void Respawn(){
+            gameObject.SetActive(true);
         }
     }
 }
