@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Do
   m_EditorClassIdentifier: 
   noteName: CO
-  noteValue: 1
+  noteValue: 10
   noteSound: {fileID: 0}

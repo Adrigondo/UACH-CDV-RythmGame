@@ -268,5 +268,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c0376789ca6bb49b12bd351705abb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreManager: {fileID: 0}
+  notesScriptableObject: {fileID: 11400000, guid: 251f85d039691c54db2e6d7efbcf8159, type: 2}
   note: 0
