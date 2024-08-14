@@ -112,6 +112,10 @@ public class NewPlayerBehavior : MonoBehaviour
         
         if (scoreManager == null)
             Debug.LogError("No Score Manager found on Player");
+        
+        Debug.LogError(_rigidBody2D);
+        if (_rigidBody2D == null)
+            Debug.LogError(_rigidBody2D);
 
         RespawnPlayer();
     }
@@ -298,6 +302,7 @@ public class NewPlayerBehavior : MonoBehaviour
         Vector2 impactPoint = hit.point;
         Vector2 newPosition = new Vector2(impactPoint.x, impactPoint.y + (_isGravityInverted ? 1 : -1) * playerHeight / 2);
         transform.position = newPosition;
+        Debug.Log(_rigidBody2D);
         _rigidBody2D.velocity = Vector2.zero;
         ChangePlayerGravityScale();
     }

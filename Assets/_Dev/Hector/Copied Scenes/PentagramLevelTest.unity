@@ -19448,6 +19448,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinValue: 10
+  score: 0
+  deathCounter: 0
+  coinCuantity: 0
   scoreLabel: {fileID: 893659233}
 --- !u!4 &1531961798
 Transform:
@@ -19766,11 +19769,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5501358040140487846, guid: 5e2678d2f2e4c61489a8891535466513, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.95
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 5501358040140487846, guid: 5e2678d2f2e4c61489a8891535466513, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.73
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 5501358040140487846, guid: 5e2678d2f2e4c61489a8891535466513, type: 3}
       propertyPath: m_LocalPosition.z
