@@ -40,7 +40,7 @@ public class PlayerFloat : MonoBehaviour
     #region "Public methods"
     public void OnFloat(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (Behaviour.IsPointerOverUI&&context.started)
         {
             if (!Behaviour.IsGrounded)
             {

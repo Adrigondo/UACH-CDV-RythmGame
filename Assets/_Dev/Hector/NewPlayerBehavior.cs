@@ -10,6 +10,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
@@ -39,9 +40,16 @@ public class NewPlayerBehavior : MonoBehaviour
     private bool _isGravityInverted = false;
     private bool _isGrounded;
     private Rigidbody2D _rigidBody2D;
+    private bool _isPointerOverUI = true;
+
     #endregion
 
     #region "Properties"
+    public bool IsPointerOverUI
+    {
+        get { return _isPointerOverUI; }
+        set { _isPointerOverUI = value; }
+    }
     public bool IsGrounded
     {
         get { return _isGrounded; }
@@ -108,10 +116,10 @@ public class NewPlayerBehavior : MonoBehaviour
             _isGravityInverted = true;
         if (startLevelMovingLeft)
             shouldMoveLeft = true;
-        
+
         if (scoreManager == null)
             Debug.LogError("No Score Manager found on Player");
-        
+
         Debug.LogError(_rigidBody2D);
         if (_rigidBody2D == null)
             Debug.LogError(_rigidBody2D);
@@ -121,6 +129,8 @@ public class NewPlayerBehavior : MonoBehaviour
 
     protected void Update()
     {
+        // Debug.Log(EventSystem.current.IsPointerOverGameObject);
+        // IsPointerOverUI = EventSystem.current.IsPointerOverGameObject();
         movementAngleInRadians = movementAngleInDegrees * Mathf.Deg2Rad;
         Vector2 movement = new Vector2(Mathf.Cos(movementAngleInRadians), Mathf.Sin(movementAngleInRadians));
         if (shouldMoveLeft)
@@ -181,7 +191,7 @@ public class NewPlayerBehavior : MonoBehaviour
     #region  "Public methods"
     public void OnChangeGravity(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (IsPointerOverUI&&context.performed)
         {
             Debug.Log((context.action.activeControl.device, context.action.activeControl.name, context.action.activeControl.displayName));
             if (context.action.activeControl.device is Touchscreen)
@@ -215,7 +225,7 @@ public class NewPlayerBehavior : MonoBehaviour
 
     public void OnTeleport(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (IsPointerOverUI&&context.performed)
         {
             CheckTeleport();
         }
