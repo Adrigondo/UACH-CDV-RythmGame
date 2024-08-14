@@ -15,10 +15,9 @@ namespace RythmGame
         protected SerializedDictionary<float, MusicalOctaveNote> HeightToNote;
 
         [SerializeField] protected GameObject NotesPlaceholdersContainer;
-        [SerializeField] protected GameObject TestPlaceholder;
-
 
         protected AudioSource AudioSource;
+        [SerializeField] protected ScoreManager scoreManager;
 
         void Start()
         {
@@ -82,6 +81,7 @@ namespace RythmGame
 
         protected void HandleCollectNote(MusicalOctave octave, MusicalNote note)
         {
+            scoreManager.AddCoinCounter();
             AudioSource.clip = Octaves[octave].Notes[note].Instruments[CurrentInstrument].AudioClip;
             AudioSource.Play();
         }

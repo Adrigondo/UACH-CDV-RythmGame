@@ -18,7 +18,7 @@ namespace RythmGame
             {
                 OnCollectNoteEvent?.Invoke(octave, note);
                 OnCollectEvent?.Invoke(ScoreValue);
-                scoreManager.AddCoinCounter();
+                // scoreManager.AddCoinCounter();
                 Dissappear();
             }
         }
