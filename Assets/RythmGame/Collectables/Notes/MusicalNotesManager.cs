@@ -19,6 +19,9 @@ namespace RythmGame
         protected AudioSource AudioSource;
         [SerializeField] protected ScoreManager scoreManager;
 
+        protected delegate void OnRespawn();
+        protected OnRespawn OnRespawnEvent;
+
         void Start()
         {
             AudioSource = GetComponent<AudioSource>();
@@ -43,47 +46,25 @@ namespace RythmGame
                     MusicalNoteCollectable collectable = noteGameObject.GetComponent<MusicalNoteCollectable>();
                     collectable.SetOctave(octaveNote.Octave);
                     collectable.OnCollectNoteEvent += HandleCollectNote;
+                    OnRespawnEvent+=collectable.Respawn;
                 }
             }
             else
             {
                 Debug.LogWarning("NotesPlaceholdersContainer not found in the scene.");
             }
-
-            // if (TestPlaceholder != null)
-            // {
-            //     MusicalOctaveNote octaveNote = HeightToNote[TestPlaceholder.transform.position.y];
-            //     // Debug.Log($"Octaves: {Octaves}");
-            //     // Debug.Log($"Octaves[note.Octave]: {Octaves[note.Octave]}");
-            //     // Debug.Log($"Octaves[note.Octave].Notes: {Octaves[note.Octave].Notes}");
-            //     // Debug.Log($"Octaves[note.Octave].Notes[note.Note]: {Octaves[note.Octave].Notes[note.Note]}");
-            //     // Debug.Log($"Prefab: {Octaves[note.Octave].Notes[note.Note].Prefab}");
-            //     // Debug.Log($"Position: {child.position}");
-            //     // Debug.Log($"Rotation: {child.rotation}");
-            //     // Debug.Log($"Parent: {NotesPlaceholdersContainer.transform}");
-            //     GameObject noteGameObject = Instantiate(
-            //         Octaves[octaveNote.Octave].Notes[octaveNote.Note].Prefab,
-            //         TestPlaceholder.transform.position,
-            //         TestPlaceholder.transform.rotation,
-            //         NotesPlaceholdersContainer.transform
-            //     );
-
-            //     Destroy(TestPlaceholder);
-            //     MusicalNoteCollectable collectable = noteGameObject.GetComponent<MusicalNoteCollectable>();
-            //     collectable.SetOctave(octaveNote.Octave);
-            //     collectable.OnCollectNoteEvent += HandleCollectNote;
-            // }
-            // else
-            // {
-            //     Debug.LogWarning("TestPlaceholder not found in the scene.");
-            // }
         }
 
-        protected void HandleCollectNote(MusicalOctave octave, MusicalNote note)
+        protected void HandleCollectNote(MusicalOctave octave, MusicalNote note, int noteValue)
         {
             scoreManager.AddCoinCounter();
+            scoreManager.UpdateScore(noteValue);
             AudioSource.clip = Octaves[octave].Notes[note].Instruments[CurrentInstrument].AudioClip;
             AudioSource.Play();
+        }
+
+        public void RespawnNotes(){
+            OnRespawnEvent?.Invoke();
         }
     }
 }

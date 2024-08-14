@@ -27,8 +27,12 @@ public class ScoreManager : MonoBehaviour, IDataPersistance
     public void AddCoinCounter()
     {
         coinCuantity ++;
-        score+=coinValue;
         SetScoreLabel(score);
+    }
+
+    public void UpdateScore(int scoreSended)
+    {
+        score += scoreSended;
     }
 
     public int AddUpFinalScore()
