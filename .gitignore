@@ -285,6 +285,8 @@ PublishScripts/
 *.snupkg
 # The packages folder can be ignored because of Package Restore
 **/[Pp]ackages/*
+# except manifest with tells unity wich packages to install
+# in first time open
 !**/[Pp]ackages/manifest.json
 # except build/, which is used as an MSBuild target.
 !**/[Pp]ackages/build/
